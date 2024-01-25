@@ -1,0 +1,72 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+.box {
+    width: 31%; /* sirka */
+    margin: 10px;
+    overflow: hidden; /* obrazok ostane v boxe */
+    position: relative; /* na poziciu textu v boxe */
+    border-radius: 10px; /* mierne zaoblenie hran */
+}
+
+.box-image {
+    width: 100%; /* Šírka obrázku sa prispôsobí "boxu" */
+    height: auto; /* Výška sa prispôsobí na zachovanie pomeru strán */
+    display: block; /* vyplnenie obrázkom na celú šírku */
+}
+
+.box-text {
+    position: absolute;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8); /* Polopriehadn  pozadie */
+    width: 100%;
+    padding: 20px 15px; /* Odsadenie textu */
+    border-top: 2px solid white; /* Biela čiara na spodu */
+}
+
+
+
+.box:hover {
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Pridá shadow */
+    transform: scale(1.05); /* zväčší box o maličko */
+    transition: all 0.3s ease-out; /* animácia vysunizia */
+}
+
+/* na zalamovanie boxov vedla seba pri nedostatku miesta*/
+.box-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.box-link {
+    text-decoration: none; /* Odstráni podčiarknutie odkazu */
+    color: inherit; /* Zachová pôvodnú farbu textu v boxe */
+    display: block; /* Umožní, aby celý box bol klikateľný */
+}
+
+
+/*
+css pre navbar
+*/
+.navbar-custom {
+    background: linear-gradient(90deg,
+                                rgb(88, 57, 11) 0%,
+                                rgb(88, 57, 11) 3%,
+                                rgb(0, 0, 0) 10%,
+                                rgba(0, 0, 0) 90%,
+                                rgb(88, 57, 11) 100%);
+}
+
+
+.navbar-logo img {
+
+    width: 60%;
+}
+
+
+
+
