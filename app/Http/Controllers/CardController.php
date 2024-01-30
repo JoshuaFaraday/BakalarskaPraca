@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Card;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 
 class CardController extends Controller
@@ -34,7 +34,7 @@ class CardController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Card $card)
+    public function show(Cart $cart)
     {
         //
     }
@@ -42,7 +42,7 @@ class CardController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Card $card)
+    public function edit(Cart $cart)
     {
         //
     }

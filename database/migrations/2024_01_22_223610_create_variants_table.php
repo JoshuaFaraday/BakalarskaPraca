@@ -22,6 +22,8 @@ return new class extends Migration
             $table->text('info');
             $table->integer('quantity');
 
+            $table->string('image')->nullable();
+
             $table->timestamps();
         });
     }

@@ -1,11 +1,153 @@
+.carousel {
+    max-width: 100vw; /* Zabezpečuje maximálnu šírku */
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.carousel-inner {
+    width: 100vw; /* 100% šírky viewportu */
+    height: 75vh; /* 75% výšky viewportu */
+}
+  /* Nastavuje obrázky a videá na celú šírku a výšku Carousel */
+
+
+.carousel-item img,
+.carousel-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Zabezpečuje, že obsah pokryje celú plochu bez deformácie */
+    animation-name: zoomEffect; /* Názov animácie */
+    animation-duration: 6s; /* Dĺžka trvania animácie */
+    animation-timing-function: ease-in-out; /* Plynulé zrýchlenie a spomalenie */
+    animation-iteration-count: infinite; /* Animácia sa bude opakovať nekonečne */
+    animation-fill-mode: forwards; /* Zabezpečuje, že animácia zostane na konci svojej poslednej polohy */
+}
+
+
+
+/* Zabezpečuje, že ovládacie prvky Carousel sú viditeľné a prístupné */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%; /* Nastavuje šírku ovládacích prvkov na 5% šírky Carousel */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-size: 100%, 100%; /* Zabezpečuje, že ikony ovládacích prvkov sú dostatočne veľké a viditeľné */
+}
+
+
+.carousel-indicators li {
+    position: relative;
+    width: 200px !important;
+
+    height: 5px;
+    background-color: transparent;
+    border: 1px solid #fff;
+}
+
+.carousel-indicators li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: red;
+    transition: none;
+}
+.carousel-indicators .active::before {
+    width: 100%;
+    /*transition: width 6s linear; */
+}
+
+@keyframes zoomEffect {
+    from {
+        transform: scale(1); /* Začiatočná škála je 1, teda žiadne zväčšenie */
+    }
+    to {
+        transform: scale(1.05); /* Mierne zväčšenie, 1.05 znamená 105% pôvodnej veľkosti */
+    }
+}
+
+
+/* tieto css sú zatial len na kopačky blade, potom vyhodit/prerobit*/
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px; /* or any spacing you prefer */
+}
+
+.product-large {
+    flex: 0 1 calc(25% - 20px); /* Adjust the 20px to match the gap for proper alignment */
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Space between rows */
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+}
+
+.product-info {
+    padding: 20px;
+    background-color: #f5f5f5; /* Light grey background */
+}
+
+.product-title {
+    font-size: 1.5em;
+    margin-bottom: 0.5em; /* Add some space below the title */
+}
+
+.product-description {
+    font-size: 1em;
+    margin-bottom: 1em; /* Add some space below the description */
+}
+
+.price {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 1em; /* Add some space below the price */
+}
+
+.detail-btn {
+    background-color: #add8e6; /* Light blue color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+.variants-container {
+    padding: 0 20px 20px;
+    background-color: #fff; /* White background for variants */
+}
+
+.variant-info + .variant-info {
+    border-top: 1px solid #eee; /* Add a separator between variants */
+    padding-top: 10px; /* Add some padding at the top */
+}
+
+/* END tieto css sú zatial len na kopačky blade, potom vyhodit/prerobit*/
+
+/* welcome blade*/
 .container {
     width: 80%;
     margin: 0 auto;
-    padding-top: 100px;
+    margin-top: 5%;
+
 }
 .box {
-    width: 31%; /* sirka */
-    margin: 10px;
+    width: 15%; /* sirka */
+    margin-top: 7px;
     overflow: hidden; /* obrazok ostane v boxe */
     position: relative; /* na poziciu textu v boxe */
     border-radius: 10px; /* mierne zaoblenie hran */
@@ -23,7 +165,8 @@
     background: rgba(255, 255, 255, 0.8); /* Polopriehadn  pozadie */
     width: 100%;
     padding: 20px 15px; /* Odsadenie textu */
-    border-top: 2px solid white; /* Biela čiara na spodu */
+    border-top: 1px solid white; /* Biela čiara na spodu */
+    text-align: center;
 }
 
 
@@ -38,7 +181,9 @@
 .box-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    margin-left: 1%;
+    margin-right: 1%;
 
 }
 
@@ -47,6 +192,7 @@
     color: inherit; /* Zachová pôvodnú farbu textu v boxe */
     display: block; /* Umožní, aby celý box bol klikateľný */
 }
+/* END welcome blade */
 
 
 /*

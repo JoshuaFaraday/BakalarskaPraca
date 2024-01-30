@@ -17,13 +17,15 @@ return new class extends Migration
             $table->text('description');
             $table->integer('price');
 
-            $table->unsignedBigInteger('categorie_id');
-            $table->foreign('categorie_id')->references('id')->on('categories');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
+
+            $table->unsignedBigInteger('gender_id')->nullable();
+            $table->foreign('gender_id')->references('id')->on('genders');
+
 
             $table->timestamps();
         });
-
-
 
     }
 

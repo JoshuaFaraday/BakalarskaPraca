@@ -2,13 +2,62 @@
 
 @section('title', 'AM footbal e-shop')
 
-@section('content')
-
-    <h2> tu by ešte mohol byť carousel s pár produktami/náhľadovkami/ponukami/niečo </h2>
-    {{-- keď bude databáza tak upraviť, asi tam nechcam mať 1000x to isté :) --}}
+<div id="welcomeCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#welcomeCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#welcomeCarousel" data-slide-to="1"></li>
+        <li data-target="#welcomeCarousel" data-slide-to="2"></li>
+        <li data-target="#welcomeCarousel" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-interval="6000">
+            <img src="{{ asset('images/carousel2.jpg') }}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item" data-interval="6000">
+            <img src="{{ asset('images/caroDoplnky.jpg') }}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item" data-interval="6000">
+            <img src="{{ asset('images/carousel4.jpg') }}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item" data-interval="6000">
+            <video class="d-block w-100" autoplay loop muted>
+                <source src="{{ asset('images/video1.mp4') }}" type="video/mp4"> <!-- Oprava typografickej chyby -->
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#welcomeCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#welcomeCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    </div>
 
     <div class="box-container">
+        @foreach ($categories as $category)
+            <div class="box">
+                <a href="{{ route('category.show', ['name' => $category->name]) }}" class="box-link">
+                    @if ($category->image)
+                        <img src="{{ $category->image }}" alt="{{ $category->name }}" class="box-image">
+                    @endif
+                    <div class="box-text">
+                        <b>{{ $category->name }} </b>
+                    </div>
+                </a>
+            </div>
+        @endforeach
+    </div>
 
+
+
+{{-- @section('content')
+
+
+
+    <div class="box-container">
         <div class="box">
             <a href="lopty" class="box-link">
                 <img src="\images\lobda.jpg" alt="Kopačky" class="box-image">
@@ -87,4 +136,4 @@
     </div>
     </div>
     </div>
-@endsection
+@endsection --}}

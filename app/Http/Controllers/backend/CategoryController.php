@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backend;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -12,7 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all(); // Získajte všetky kategórie z databázy
+        return view('welcome', compact('categories')); // 'your-view-name' je názov vášho Blade súboru bez .blade.php
+        //return view('pages.backend.categories.index');
     }
 
     /**
@@ -34,10 +38,20 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
-    {
-        //
+    public function show($name)
+{
+    $slug = Str::slug(strtolower($name)); // Konvertuje názov na slug
+
+    $viewName = 'pages.' . $slug; // Vytvára názov pohľadu
+
+    if (view()->exists($viewName)) {
+        return view($viewName);
+    } else {
+        // Presmerovanie na úvodnú stránku ak sa zadala nesprávna cesta
+        return redirect('/'); // možnosť aj chybovej hlášky ->with('error', 'Zadali ste nesprávnu cestu.');
     }
+}
+
 
     /**
      * Show the form for editing the specified resource.

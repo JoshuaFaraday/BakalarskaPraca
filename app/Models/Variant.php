@@ -21,6 +21,15 @@ class Variant extends Model
         return $this->hasMany(Cart::class);
     }
 
+    protected $appends = ['image_path'];
+
+    public function getImagePathAttribute()
+    {
+        // Predpokladajme, že 'image' je stĺpec v tabuľke 'variants' kde je uložený názov obrázku
+        // Táto metóda vytvorí celú cestu k obrázku
+        return asset('images/' . $this->image);
+    }
+
 
 
 }

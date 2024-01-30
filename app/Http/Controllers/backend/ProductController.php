@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backend;
 
+use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+
+
 
 class ProductController extends Controller
 {
@@ -12,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return "Hello";
     }
 
     /**
@@ -61,5 +65,13 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function showKopacky()
+    {
+        $kopackyCategory = Category::with('products.variants')->where('name', 'kopačky')->firstOrFail();
+        $products = $kopackyCategory->products;
+
+        return view('pages.kopacky', compact('products'));
     }
 }

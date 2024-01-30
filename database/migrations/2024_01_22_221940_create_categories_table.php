@@ -15,7 +15,8 @@ return new class extends Migration
             // $table->integer('id')->primary()->unique()->unsigned()->autoIncrement();
             $table->id();
             $table->string('name');
-            $table->bigInteger('parent_id')->unsigned();
+            $table->bigInteger('parent_id')->unsigned()->nullable()->default(NULL);
+            $table->string('image')->nullable()->default(NULL);
             $table->timestamps();
         });
 
