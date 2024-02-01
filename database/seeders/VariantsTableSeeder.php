@@ -19,7 +19,7 @@ class VariantsTableSeeder extends Seeder
             '336420032_max.jpg',
             'chraniče.jpg',
             'lobda.jpg',
-            'loho_shop.png',
+            'logo_shop.png',
             'Oddychajace-pogrubione-rekawice-bramkarskie.jpg'
         ];
 

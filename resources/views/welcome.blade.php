@@ -21,7 +21,7 @@
         </div>
         <div class="carousel-item" data-interval="6000">
             <video class="d-block w-100" autoplay loop muted>
-                <source src="{{ asset('images/video1.mp4') }}" type="video/mp4"> <!-- Oprava typografickej chyby -->
+                <source src="{{ asset('images/video1.mp4') }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -50,7 +50,6 @@
             </div>
         @endforeach
     </div>
-
 
 
 {{-- @section('content')

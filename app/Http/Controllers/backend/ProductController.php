@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 
 
@@ -38,9 +39,9 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show($name)
     {
-        //
+
     }
 
     /**
@@ -67,11 +68,4 @@ class ProductController extends Controller
         //
     }
 
-    public function showKopacky()
-    {
-        $kopackyCategory = Category::with('products.variants')->where('name', 'kopačky')->firstOrFail();
-        $products = $kopackyCategory->products;
-
-        return view('pages.kopacky', compact('products'));
-    }
 }

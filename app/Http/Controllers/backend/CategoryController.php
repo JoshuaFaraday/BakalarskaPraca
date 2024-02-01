@@ -5,26 +5,43 @@ namespace App\Http\Controllers\backend;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CategoryController extends Controller
+class CategoryController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all(); // Získajte všetky kategórie z databázy
-        return view('welcome', compact('categories')); // 'your-view-name' je názov vášho Blade súboru bez .blade.php
-        //return view('pages.backend.categories.index');
+
+        // Volanie pôvodnej index metódy a získanie výstupu
+        $view = parent::index($request);
+
+        // Kontrola, či výstup je inštancia View
+        if ($view instanceof \Illuminate\View\View) {
+            // Získanie dát odovzdaných do pohľadu
+            $data = $view->getData();
+
+            // Môžete pridať alebo upraviť dáta pre váš pohľad
+            // $data['customVariable'] = 'customValue';
+
+            // Vrátenie vášho vlastného pohľadu s pôvodnými dátami
+            return view('voyager::categories.browse', $data);
+        }
+
+        // Ak výstup nie je View (napr. presmerovanie), vráťte ho priamo
+        return $view;
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        parent::create($request);
     }
 
     /**
@@ -32,48 +49,37 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        parent::index($request);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($name)
-{
-    $slug = Str::slug(strtolower($name)); // Konvertuje názov na slug
 
-    $viewName = 'pages.' . $slug; // Vytvára názov pohľadu
-
-    if (view()->exists($viewName)) {
-        return view($viewName);
-    } else {
-        // Presmerovanie na úvodnú stránku ak sa zadala nesprávna cesta
-        return redirect('/'); // možnosť aj chybovej hlášky ->with('error', 'Zadali ste nesprávnu cestu.');
+    public function show(Request $request, $id)
+    {
+        parent::create($request, $id);
     }
-}
 
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(Request $request, $id)
     {
-        //
+        parent::create($request, $id);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        parent::create($request, $id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(Request $request, $id)
     {
-        //
+        parent::create($request, $id);
     }
 }

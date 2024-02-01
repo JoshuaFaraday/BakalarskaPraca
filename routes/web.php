@@ -1,7 +1,8 @@
 <?php
-
+namespace App\Http\Controllers\backend;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\frontend\CategoryController as FrontendCategoryController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Facades\Voyager;
@@ -26,43 +27,14 @@ use TCG\Voyager\Facades\Voyager;
 routy pre podstránky sekcii (lopty, chranice, rozhodca, ofiko dresy, kopacky.......)
 */
 
-Route::get('/', [CategoryController::class, 'index']); // Toto je predpokladaná domovská stránka, môžete ju prispôsobiť podľa vašich potrieb
+Route::get('/', [FrontendCategoryController::class, 'index']); // Toto je domovska stránka
 
-Route::get('/category/{name}', 'App\Http\Controllers\backend\CategoryController@show')->name('category.show');
+Route::get('/category/{name}', 'App\Http\Controllers\frontend\CategoryController@show')->name('category.show');
 
-
-Route::get('/lopty', function () {
-    return view('pages.lopty'); //  blade sablona v priecinku resources-views-pages
-});
-
-Route::get('/chranice', function() {
-    return view('pages.chranice');
-});
-
-Route::get('/treningove-doplnky', function() {
-    return view('pages.treningove-doplnky');
-});
-
-Route::get('/brankarske-vybavenie', function() {
-    return view('pages.brankarske-vybavenie');
-});
-
-Route::get('/oficialne-dresy', function() {
-    return view('pages.oficialne-dresy');
-});
-Route::get('/rozhodca', function() {
-    return view('pages.rozhodca');
-});
-Route::get('/oblecenie', function() {
-    return view('pages.oblecenie');
-});
-// Route::get('/kopacky', function() {
-//     return view('pages.kopacky');
+// Route::get('/lopty', function () {
+//     return view('pages.lopty'); //  blade sablona v priecinku resources-views-pages
 // });
-Route::get('/kopacky', [ProductController::class, 'showKopacky'])->name('kopacky.show');
-Route::get('/zdravotne-doplnky', function() {
-    return view('pages.zdravotne-doplnky');
-});
+
 /*
 koniec rout pre  podstránky sekcii (lopty, chranice, rozhodca, ofiko dresy, kopacky.......)
 */
@@ -71,3 +43,12 @@ koniec rout pre  podstránky sekcii (lopty, chranice, rozhodca, ofiko dresy, kop
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+// Route::group(['prefix' => 'admin'], function () {
+//     Route::get('/admin/categories', [CategoryController::class, 'index']);
+
+
+
+
+//     // Definujte ďalšie trasy podľa potreby
+// });
