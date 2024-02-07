@@ -6,9 +6,11 @@ use App\Models\Variant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cart extends Model
+class OrderVariant extends Model
 {
     use HasFactory;
+    protected $table = 'orders_variants';
+    public $timestamps = false;
 
     public function variants() {
         return $this->belongsToMany(Variant::class);

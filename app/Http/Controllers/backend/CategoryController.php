@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class CategoryController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {

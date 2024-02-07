@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             GendersTableSeeder::class,
             ProductsTableSeeder::class,
-            VariantsTableSeeder::class
+            VariantsTableSeeder::class,
+            VoyagerDatabaseSeeder::class,
 
         ]);
 

@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
-@section('content')
-    <x-productVariants :products="$products" />
-@endsection
+
+<x-variant :variants="$variants" />
+

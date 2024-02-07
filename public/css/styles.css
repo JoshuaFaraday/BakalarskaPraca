@@ -129,6 +129,73 @@
 /* END welcome blade */
 
 
+.product-variants {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Box začne na začiatku kontajnera */
+    gap: 10px; /* Vytvára medzery medzi boxmi */
+    margin-right: 4%; /* Odčítame okraj posledného boxu na riadku */
+    margin-left: 4%; /* Odčítame okraj prvého boxu na riadku */
+    align-items: stretch;
+
+}
+
+.product-variant {
+    flex: 1 1 calc((100% / 7) - 10px); /* Nastavíme 5 boxov na riadok */
+    margin: 5px; /* Pridáme okraj na každú stranu boxu */
+    box-sizing: border-box; /* Zaistíme, aby padding a border boli zahrnuté do šírky boxu */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Jemný tieň okolo boxu */
+    transition: transform 0.3s ease; /* Animácia pre efekt "vysunutia" */
+    border-radius: 10px;
+    align-items: stretch;
+
+}
+
+
+.product-variant:hover {
+    transform: translateY(-5px); /* Posunutie boxu nahor pri hover */
+}
+
+.product-variant__image-wrapper {
+    height: 50%; /* Nastavíme výšku obrázku na 50% výšky celého boxu */
+    display: flex;
+    align-items: center; /* Vycentruje obrázok vertikálne */
+    justify-content: center; /* Vycentruje obrázok horizontálne */
+}
+
+.product-variant__image {
+    max-width: 100%; /* Obrázok sa prispôsobí šírke obalu */
+    max-height: 100%; /* Obrázok sa prispôsobí výške obalu */
+}
+
+.product-variant__info {
+    padding: 10px; /* Vnútorný okraj okolo informácií o produkte */
+}
+
+.product-variant__title,
+.product-variant__description,
+.product-variant__price,
+.product-variant__size,
+.product-variant__color,
+.product-variant__quantity {
+    margin: 5px 0; /* Vertikálny okraj pre textové prvky */
+}
+
+/* Štýly pre oddelovaciu čiaru */
+.product-variant__separator {
+    border: 0;
+    height: 1px;
+    background-color: #ccc; /* Sivá farba čiary */
+    margin: 0; /* Odstránenie vonkajších okrajov */
+    width: 100%; /* Čiara bude na celú šírku boxu */
+}
+
+.product-variant:nth-child(-n+6) {
+    margin-top: 100px; /* Ak chcete, aby prvých 7 boxov (jeden riadok) malo väčší horný okraj */
+}
+
+
+
 /*
 css pre navbar
 */
@@ -148,5 +215,7 @@ css pre navbar
 }
 
 
-
+.filters {
+    margin-top: 100px;
+}
 

@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Product;
+use App\Models\OrderVariant;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+//CartController
 
-
-
-class ProductController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
+class OrdersVariantsController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
-    /**
+     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
@@ -30,7 +26,7 @@ class ProductController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
             // $data['customVariable'] = 'customValue';
 
             // Vrátenie vášho vlastného pohľadu s pôvodnými dátami
-            return view('voyager::products.browse', $data);
+            return view('voyager::ordersVariants.browse', $data);
         }
 
         // Ak výstup nie je View (napr. presmerovanie), vráťte ho priamo
@@ -83,5 +79,4 @@ class ProductController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
     {
         parent::create($request, $id);
     }
-
 }

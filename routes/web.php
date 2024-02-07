@@ -3,6 +3,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\frontend\CategoryController as FrontendCategoryController;
+use App\Http\Controllers\VariantController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Facades\Voyager;
@@ -30,6 +31,9 @@ routy pre podstránky sekcii (lopty, chranice, rozhodca, ofiko dresy, kopacky...
 Route::get('/', [FrontendCategoryController::class, 'index']); // Toto je domovska stránka
 
 Route::get('/category/{name}', 'App\Http\Controllers\frontend\CategoryController@show')->name('category.show');
+Route::get('/lopty', 'App\Http\Controllers\frontend\VariantController@filter')->name('variants.filter');
+
+
 
 // Route::get('/lopty', function () {
 //     return view('pages.lopty'); //  blade sablona v priecinku resources-views-pages
@@ -44,11 +48,10 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+
+
 // Route::group(['prefix' => 'admin'], function () {
 //     Route::get('/admin/categories', [CategoryController::class, 'index']);
 
 
-
-
-//     // Definujte ďalšie trasy podľa potreby
 // });
