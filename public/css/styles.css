@@ -141,13 +141,14 @@
 }
 
 .product-variant {
-    flex: 1 1 calc((100% / 7) - 10px); /* Nastavíme 5 boxov na riadok */
-    margin: 5px; /* Pridáme okraj na každú stranu boxu */
+    flex: 0 1 calc((100% / 6) - 10px); /* Nastavíme 5 boxov na riadok, flex-grow nastavený na 0 aby po vyflitrovaní sa boxy nesnažili vyplnnit všetko miesto a neroztahovali sa */
+    margin-top: 20px;
     box-sizing: border-box; /* Zaistíme, aby padding a border boli zahrnuté do šírky boxu */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Jemný tieň okolo boxu */
     transition: transform 0.3s ease; /* Animácia pre efekt "vysunutia" */
     border-radius: 10px;
     align-items: stretch;
+    min-width: 180px;  /* minimálna šírka, pri zmenšovaní, iné menšie zobrazenia */
 
 }
 
@@ -170,7 +171,9 @@
 
 .product-variant__info {
     padding: 10px; /* Vnútorný okraj okolo informácií o produkte */
+    word-wrap: break-word; /* na zalomenie dlhých slov, aby ostali v "boxe" */
 }
+
 
 .product-variant__title,
 .product-variant__description,
@@ -181,6 +184,7 @@
     margin: 5px 0; /* Vertikálny okraj pre textové prvky */
 }
 
+
 /* Štýly pre oddelovaciu čiaru */
 .product-variant__separator {
     border: 0;
@@ -190,9 +194,12 @@
     width: 100%; /* Čiara bude na celú šírku boxu */
 }
 
+/*
 .product-variant:nth-child(-n+6) {
-    margin-top: 100px; /* Ak chcete, aby prvých 7 boxov (jeden riadok) malo väčší horný okraj */
-}
+    margin-top: 20px; } /* prvých 6 boxov (jeden riadok) odsadené od horného okraja */
+
+
+
 
 
 
