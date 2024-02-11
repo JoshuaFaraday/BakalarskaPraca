@@ -67,12 +67,15 @@ class VariantController extends Controller
         //
     }
 
-    public function filter(Request $request)
+    public function filter(Request $request, $name)
     {
         // Získanie filtrovacích možností pre formulár
+
         $sizes = Variant::distinct()->pluck('size')->all();
         $colors = Variant::distinct()->pluck('color')->all();
         $genders = Gender::all();
+        $category = Category::where('name', $name)->first();
+
 
         // Získanie filtrovacích kritérií z požiadavky
         $size = $request->size;
@@ -127,11 +130,13 @@ class VariantController extends Controller
         // $productIds = $variants->pluck('product_id')->unique();
         // $products = Product::whereIn('id', $productIds)->with('variants')->get();
 
-        return view('pages.lopty', [
-            'variants' => $variants, // Filtrované produkty
+        return view('components\variant', [
+            'variants' => $variants, // Filtrované varianty produktov
             'sizes' => $sizes,       // Možnosti pre veľkosti
             'colors' => $colors,     // Možnosti pre farby
             'genders' => $genders,   // Možnosti pre pohlavia
+            'category' => $category,
+
         ]);
     }
 }
