@@ -4,7 +4,6 @@
             <label for="size">Veľkosť:</label>
             <select name="size" id="size">
                 <option value="">Všetky veľkosti</option>
-                {{-- Dynamicky generované možnosti veľkostí --}}
                 @foreach ($sizes as $size)
                 <option value="{{ $size }}">{{ $size }}</option>
             @endforeach
@@ -15,7 +14,7 @@
             <label for="color">Farba:</label>
             <select name="color" id="color">
                 <option value="">Všetky farby</option>
-                {{-- Dynamicky generované možnosti farieb --}}
+
                 @foreach ($colors as $color)
                     <option value="{{ $color }}">{{ $color }}</option>
                 @endforeach
@@ -26,7 +25,7 @@
             <label for="gender">Pohlavie:</label>
             <select name="gender" id="gender">
                 <option value="">Všetky pohlavia</option>
-                {{-- Dynamicky generované možnosti pohlaví --}}
+                
                 @foreach ($genders as $gender)
                     <option value="{{ $gender->id }}">{{ $gender->name }}</option>
                 @endforeach

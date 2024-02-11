@@ -226,3 +226,80 @@ css pre navbar
     margin-top: 100px;
 }
 
+
+
+
+
+.footer {
+    background: #000000;
+    color: white;
+    padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.footer__logo-col {
+    flex: 1; /* Flexibilita pre logo */
+    margin: 0 1rem;
+    text-align: center;
+    justify-content: center;
+
+}
+
+.footer__links-col {
+    flex: 1;
+    color: #bd9d5a;
+
+    margin: 0 1rem;
+}
+
+.footer__link {
+    display: flex;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: inherit; /* Farba sa zdedí z rodičovského elementu */
+
+    justify-content: flex-start;
+}
+
+.footer__link:hover{
+    color: #ba8b00;
+    text-decoration: none; /* Zabezpečí, že text nebude podčiarknutý */
+}
+
+.footer__socials-col {
+    flex: 1;
+    margin: 0 1rem;
+    text-align: right;
+}
+.footer__social-link:hover {
+    color: #ba8b00;
+    text-decoration: none; /* Zabezpečí, že text nebude podčiarknutý */
+}
+
+.footer__social-link {
+    display: block;
+    color: #bd9d5a;
+    margin-bottom: 1.1rem;
+    font-size: 1.375rem;
+
+}
+
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column; /* Na malých obrazovkách sa elementy zoradia vertikálne */
+    }
+
+    .footer__links-col, .footer__logo-col, .footer__socials-col, .footer__link {
+        justify-content: center; /* Všetky elementy sa centrujú na malých zariadeniach */
+        width: 100%; /* Elementy zaberú celú šírku */
+        margin-bottom: 1rem; /* Pridáva vertikálny priestor medzi elementy */
+        text-align: center;
+    }
+
+
+}
+
