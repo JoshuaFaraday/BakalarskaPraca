@@ -1,5 +1,5 @@
 <footer class="footer">
-    <div class="footer__container container">
+    <div class="container-fluid">
         <div class="row">
 
 
@@ -20,9 +20,9 @@
 
 
             <div class="footer__socials-col">
-                <a href="https://www.instagram.com/_andrej_minar" class="footer__social-link"><i class="fab fa-instagram footer__social-icon"></i></a>
-                <a href="https://www.facebook.com/" class="footer__social-link"><i class="fab fa-facebook-square footer__social-icon"></i></a>
-                <a href="mailto:andrejminar66@gmail.com" class="footer__social-link"><i class="fas fa-envelope footer__social-icon"></i></a>
+                <a href="https://www.instagram.com/_andrej_minar" class="footer__social-link"> Instagram:  <i class="fab fa-instagram footer__social-icon"></i></a>
+                <a href="https://www.facebook.com/" class="footer__social-link">Facebook:  <i class="fab fa-facebook-square footer__social-icon"></i></a>
+                <a href="mailto:andrejminar66@gmail.com" class="footer__social-link">Gmail:  <i class="fas fa-envelope footer__social-icon"></i></a>
             </div>
         </div>
     </div>

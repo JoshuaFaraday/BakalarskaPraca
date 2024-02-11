@@ -1,5 +1,5 @@
 <div class="filters">
-    <form action="{{ route('variants.filter') }}" method="GET" class="filters-form">
+    <form action="{{ route('variants.filter', ['name' => request('name')]) }}" method="GET" class="filters-form">
         <div class="filters-form__group">
             <label for="size">Veľkosť:</label>
             <select name="size" id="size">
@@ -25,7 +25,7 @@
             <label for="gender">Pohlavie:</label>
             <select name="gender" id="gender">
                 <option value="">Všetky pohlavia</option>
-                
+
                 @foreach ($genders as $gender)
                     <option value="{{ $gender->id }}">{{ $gender->name }}</option>
                 @endforeach

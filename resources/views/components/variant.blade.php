@@ -18,27 +18,34 @@
         </div>
     @endforeach
 </div> --}}
+@extends('layouts.app')
+<x-filters :sizes="$sizes" :colors="$colors" :genders="$genders" />
+@livewire('filter.filter')
 
+<div class="category-title">
+    <h1>Toto je kategória: {{ $category->name }}</h1>
+</div>
 
 <div class="product-variants">
 
-        @foreach ($variants as $variant)
-            <div class="product-variant">
-                @if ($variant->image)
-                    <div class="product-variant__image-wrapper">
-                        <img src="{{ asset('images/' . $variant->image) }}" alt="{{ $variant->image }}" class="product-variant__image">
-                    </div>
-                    <hr class="product-variant__separator">
-                @endif
-                <div class="product-variant__info">
-                    <h3 class="product-variant__title">{{ $variant->product->name }} {{$variant->product->id}}</h3>
-                    <p class="product-variant__description">{{ $variant->product->description }}</p>
-                    <p class="product-variant__price">Price: {{ $variant->product->price }}</p>
-                    <p class="product-variant__size">Size: {{ $variant->size }}</p>
-                    <p class="product-variant__color">Color: {{ $variant->color }}</p>
-                    <p class="product-variant__quantity">Quantity: {{ $variant->quantity }}</p>
+    @foreach ($variants as $variant)
+        <div class="product-variant">
+            @if ($variant->image)
+                <div class="product-variant__image-wrapper">
+                    <img src="{{ asset('images/' . $variant->image) }}" alt="{{ $variant->image }}"
+                        class="product-variant__image">
                 </div>
+                <hr class="product-variant__separator">
+            @endif
+            <div class="product-variant__info">
+                <h3 class="product-variant__title">{{ $variant->product->name }} {{ $variant->product->id }}</h3>
+                <p class="product-variant__description">{{ $variant->product->description }}</p>
+                <p class="product-variant__price">Price: {{ $variant->product->price }}</p>
+                <p class="product-variant__size">Size: {{ $variant->size }}</p>
+                <p class="product-variant__color">Color: {{ $variant->color }}</p>
+                <p class="product-variant__quantity">Quantity: {{ $variant->quantity }}</p>
             </div>
-        @endforeach
+        </div>
+    @endforeach
 
 </div>

@@ -227,9 +227,6 @@ css pre navbar
 }
 
 
-
-
-
 .footer {
     background: #000000;
     color: white;
@@ -240,6 +237,8 @@ css pre navbar
     align-items: center;
 
 }
+
+
 
 .footer__logo-col {
     flex: 1; /* Flexibilita pre logo */
@@ -252,7 +251,6 @@ css pre navbar
 .footer__links-col {
     flex: 1;
     color: #bd9d5a;
-
     margin: 0 1rem;
 }
 
@@ -261,8 +259,9 @@ css pre navbar
     font-size: 1.4rem;
     text-decoration: none;
     color: inherit; /* Farba sa zdedí z rodičovského elementu */
-
     justify-content: flex-start;
+    margin-bottom: 1.1rem;
+    font-size: 1.375rem;
 }
 
 .footer__link:hover{

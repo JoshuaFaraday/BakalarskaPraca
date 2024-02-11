@@ -31,7 +31,8 @@ routy pre podstránky sekcii (lopty, chranice, rozhodca, ofiko dresy, kopacky...
 Route::get('/', [FrontendCategoryController::class, 'index']); // Toto je domovska stránka
 
 Route::get('/category/{name}', 'App\Http\Controllers\frontend\CategoryController@show')->name('category.show');
-Route::get('/lopty', 'App\Http\Controllers\frontend\VariantController@filter')->name('variants.filter');
+Route::get('/category/{name}/filter', 'App\Http\Controllers\frontend\VariantController@filter')->name('variants.filter');
+
 
 
 
