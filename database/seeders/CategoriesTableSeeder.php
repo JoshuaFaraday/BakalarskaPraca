@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Size;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -10,13 +11,21 @@ class CategoriesTableSeeder extends Seeder
 {
     public function run()
     {
+
+        $category = Category::find(1); // Najdite kategóriu podľa ID
+        $letterSizes = Size::where('value', 'regexp', '^[A-Za-z]+$')->get()->pluck('id')->toArray();
+        $numberSizes = Size::where('value', 'regexp', '^[0-9]+$')->get()->pluck('id')->toArray();
+
+
         DB::table('categories')->delete();
 
         $lopty = Category::updateOrCreate(['name' => 'Lopty', 'image' => '\images\lobda.jpg']);
         $kopacky = Category::updateOrCreate(['name' => 'Kopačky', 'image' => '\images\1050116-1109297282.jpg']);
+        $kopacky->sizes()->attach($numberSizes);
         $chranice = Category::updateOrCreate(['name' => 'Chrániče', 'image' => '\images\chraniče.jpg']);
         $brankarskeVybavenie = Category::updateOrCreate(['name' => 'Brankárske Vybavenie', 'image' => '\images\Oddychajace-pogrubione-rekawice-bramkarskie.jpg']);
         $oblecenie = Category::updateOrCreate(['name' => 'Oblečenie', 'image' => '\images\336420032_max.jpg']);
+        $oblecenie->sizes()->attach($letterSizes);
         $doplnky = Category::updateOrCreate(['name' => 'Doplnky', 'image' => '\images\Training-kit-cely-novy-3-scaled.jpg']);
 
         Category::upsert([

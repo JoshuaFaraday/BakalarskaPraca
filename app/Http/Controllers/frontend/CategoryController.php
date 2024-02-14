@@ -51,7 +51,6 @@ class CategoryController extends Controller
             return redirect('/');
             //->with('error', 'Kategória neexistuje.');
         }
-
         // Načítavam všetky produkty ktore patria danej najdenej kategórie, s `with('variants')` načítam aj všetky varianty produktov
         //Produkty s variantami sa získajú v jednom dotaze
         $variants = Variant::whereHas('product', function ($query) use ($category) {
@@ -59,22 +58,39 @@ class CategoryController extends Controller
         })->get();
 
         //TODO:nieco podobne budem potrebovat pri ziskavani dat do filtrov
-         // Získanie unikátnych veľkostí, farieb a pohlaví z variantov produktov v danej kategórii
-        $sizes = Variant::whereHas('product', function ($query) use ($category) {
-            $query->where('category_id', $category->id);
-        })->distinct()->pluck('size');
+        // Získanie unikátnych veľkostí, farieb a pohlaví z variantov produktov v danej kategórii
+        // $sizes = Variant::whereHas('product', function ($query) use ($category) {
+        //     $query->where('category_id', $category->id);
+        // })->distinct()->pluck('size_id');
+        $sizes = Category::with('sizes')->where('id', $category->id)->first()->sizes->mapWithKeys(function ($size) {
+            return [$size->id => $size->value];
+        })->toArray();
 
+
+        // $colors = Variant::whereHas('product', function ($query) use ($category) {
+        //     $query->where('category_id', $category->id);
+        // })->distinct()->pluck('color_id');
         $colors = Variant::whereHas('product', function ($query) use ($category) {
             $query->where('category_id', $category->id);
-        })->distinct()->pluck('color');
+        })->with('color')->get()->pluck('color')->unique('id')->values()->mapWithKeys(function ($color) {
+            return [$color->id => $color->name];
+        })->toArray();
 
-        // Predpokladajúc, že máte vzťah medzi produktmi a pohlaviami definovaný v modeli Product
         $genders = Gender::whereHas('products', function ($query) use ($category) {
             $query->where('category_id', $category->id);
         })->get();
 
 
-        return view('components\variant', compact('category', 'variants', 'sizes', 'colors', 'genders'));
+
+
+        $genders = $genders->map(function ($gender) {
+            return $gender->only(['id', 'name']); // predpoklad že chcem len ID a názov pre pohlavia
+        })->toArray();
+        $filters = ['sizes' => $sizes, 'colors' => $colors];
+
+
+        return view('components.variant', compact('filters', 'category', 'variants'));
+
 
 
         //Konverzia názvu kategorie na slug, kvoli diakritike a velky ma malym pismenam v db a nazvov blade-ov, teda dynamicky určit nazov šablony ktoru chcem zobrazit

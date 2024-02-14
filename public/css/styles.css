@@ -266,7 +266,7 @@ css pre navbar
 
 .footer__link:hover{
     color: #ba8b00;
-    text-decoration: none; /* Zabezpečí, že text nebude podčiarknutý */
+    text-decoration: none; /* text nebude podčiarknutý */
 }
 
 .footer__socials-col {
@@ -276,7 +276,7 @@ css pre navbar
 }
 .footer__social-link:hover {
     color: #ba8b00;
-    text-decoration: none; /* Zabezpečí, že text nebude podčiarknutý */
+    text-decoration: none; /* text nebude podčiarknutý */
 }
 
 .footer__social-link {
@@ -289,16 +289,45 @@ css pre navbar
 
 @media (max-width: 768px) {
     .footer {
-        flex-direction: column; /* Na malých obrazovkách sa elementy zoradia vertikálne */
+        flex-direction: column; /* Na malých obrazovkách sa elementy zoradia pod seba */
     }
 
     .footer__links-col, .footer__logo-col, .footer__socials-col, .footer__link {
         justify-content: center; /* Všetky elementy sa centrujú na malých zariadeniach */
         width: 100%; /* Elementy zaberú celú šírku */
-        margin-bottom: 1rem; /* Pridáva vertikálny priestor medzi elementy */
+        margin-bottom: 1rem;
         text-align: center;
     }
 
 
+}
+
+
+.filter-container {
+    background: linear-gradient(90deg,
+    rgb(88, 57, 11) 0%,
+    rgb(88, 57, 11) 3%,
+    rgb(0, 0, 0) 10%,
+    rgba(0, 0, 0) 90%,
+    rgb(88, 57, 11) 100%);
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* medzery medzi komponentami */
+    border-radius: 2px; /
+}
+
+.select-component {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.select-component__title, .select-component__select-wrapper {
+    color: #bd9d5a;
+    margin-right: 10px; /* Medzera medzi titulkom a select wrapperom */
+}
+
+.select-component__select {
+    border-radius: 5px; /* Zaoblenie pre selector */
 }
 

@@ -17,8 +17,13 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
 
-            $table->string('size');
-            $table->string('color');
+            $table->unsignedBigInteger('size_id');
+            $table->foreign('size_id')->references('id')->on('sizes');
+
+            $table->unsignedBigInteger('color_id');
+            $table->foreign('color_id')->references('id')->on('colors');
+
+
             $table->text('info');
             $table->integer('quantity');
 

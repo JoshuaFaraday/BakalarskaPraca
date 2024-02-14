@@ -19,13 +19,14 @@
     @endforeach
 </div> --}}
 @extends('layouts.app')
-<x-filters :sizes="$sizes" :colors="$colors" :genders="$genders" />
-@livewire('filter.filter')
+{{-- <x-filters :sizes="$sizes" :colors="$colors" :genders="$genders" /> --}}
+
+
 
 <div class="category-title">
     <h1>Toto je kategória: {{ $category->name }}</h1>
 </div>
-
+@livewire('filter.filter', ['filters' => $filters])
 <div class="product-variants">
 
     @foreach ($variants as $variant)

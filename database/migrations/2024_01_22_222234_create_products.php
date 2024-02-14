@@ -23,6 +23,9 @@ return new class extends Migration
             $table->unsignedBigInteger('gender_id')->nullable();
             $table->foreign('gender_id')->references('id')->on('genders');
 
+            $table->unsignedBigInteger('brand_id');
+            $table->foreign('brand_id')->references('id')->on('brands');
+
 
             $table->timestamps();
         });

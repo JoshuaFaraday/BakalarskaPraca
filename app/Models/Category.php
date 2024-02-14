@@ -13,6 +13,15 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function filters() {
+        return $this->belongsToMany(Filter::class);
+    }
+
+    public function sizes() {
+        return $this->belongsToMany(Size::class, 'category_size');
+    }
+
+
 
     public function parent() {
         return $this->belongsTo(Category::class, 'parent_id');

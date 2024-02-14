@@ -76,7 +76,7 @@ class VariantController extends Controller
         $genders = Gender::all();
         $category = Category::where('name', $name)->first();
 
-
+        //TODO spravit customRequest https://laravel.com/docs/10.x/validation#form-request-validation
         // Získanie filtrovacích kritérií z požiadavky
         $size = $request->size;
         $color = $request->color;
