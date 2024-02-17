@@ -222,9 +222,7 @@ css pre navbar
 }
 
 
-.filters {
-    margin-top: 100px;
-}
+
 
 
 .footer {
@@ -311,9 +309,11 @@ css pre navbar
     rgba(0, 0, 0) 90%,
     rgb(88, 57, 11) 100%);
     display: flex;
+    padding-top: 2.2%;
     justify-content: center;
     gap: 10px; /* medzery medzi komponentami */
     border-radius: 2px; /
+
 }
 
 .select-component {
@@ -330,4 +330,5 @@ css pre navbar
 .select-component__select {
     border-radius: 5px; /* Zaoblenie pre selector */
 }
+
 

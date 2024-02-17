@@ -38,7 +38,7 @@ class ProductsTableSeeder extends Seeder
             'category_id' => $lopty->id,
             'gender_id' => $genderId->random(),
             'brand_id' => $brandId->random()],
-        ], ['name'], ['description', 'price', 'category_id', 'brand_id', 'gender_id']); //treba sem aj 'gender_id' ?
+        ], ['name'], ['description', 'price', 'category_id', 'brand_id', 'gender_id']);
 
 
 

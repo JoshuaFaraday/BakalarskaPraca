@@ -45,8 +45,8 @@
                 <p class="product-variant__size">Size: {{ $variant->size }}</p>
                 <p class="product-variant__color">Color: {{ $variant->color }}</p>
                 <p class="product-variant__quantity">Quantity: {{ $variant->quantity }}</p>
+                <p class="product-variant__brand">Brand: {{ $variant->product->brand->name }}</p>
             </div>
         </div>
     @endforeach
-
 </div>

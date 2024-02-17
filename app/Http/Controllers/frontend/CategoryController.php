@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Gender;
 use App\Models\Product;
 use App\Models\Variant;
@@ -76,6 +77,10 @@ class CategoryController extends Controller
             return [$color->id => $color->name];
         })->toArray();
 
+        $brands = Brand::whereHas('products', function ($query) use ($category) {
+            $query->where('category_id', $category->id);
+        })->get()->pluck('name', 'id')->toArray();
+
         $genders = Gender::whereHas('products', function ($query) use ($category) {
             $query->where('category_id', $category->id);
         })->get();
@@ -86,7 +91,7 @@ class CategoryController extends Controller
         $genders = $genders->map(function ($gender) {
             return $gender->only(['id', 'name']); // predpoklad že chcem len ID a názov pre pohlavia
         })->toArray();
-        $filters = ['sizes' => $sizes, 'colors' => $colors];
+        $filters = ['sizes' => $sizes, 'colors' => $colors, 'brands' => $brands];
 
 
         return view('components.variant', compact('filters', 'category', 'variants'));

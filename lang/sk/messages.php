@@ -4,7 +4,8 @@ return [
 
     'filter' => [
         'colors' => 'Farba',
-        'sizes' => 'Veľkosť'
+        'sizes' => 'Veľkosť',
+        'brands' => 'Značka'
     ],
 
 
