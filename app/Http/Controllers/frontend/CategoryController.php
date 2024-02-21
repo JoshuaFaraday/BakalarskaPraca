@@ -56,7 +56,7 @@ class CategoryController extends Controller
         //Produkty s variantami sa získajú v jednom dotaze
         $variants = Variant::whereHas('product', function ($query) use ($category) {
             $query->where('category_id', $category->id);
-        })->get();
+        })->paginate(20);
 
         //TODO:nieco podobne budem potrebovat pri ziskavani dat do filtrov
         // Získanie unikátnych veľkostí, farieb a pohlaví z variantov produktov v danej kategórii

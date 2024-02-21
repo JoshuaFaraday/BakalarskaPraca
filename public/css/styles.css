@@ -25,6 +25,7 @@
 
 
 
+
 /* Zabezpečuje, že ovládacie prvky Carousel sú viditeľné a prístupné */
 .carousel-control-prev,
 .carousel-control-next {
@@ -87,6 +88,25 @@
     border-radius: 10px; /* mierne zaoblenie hran */
 }
 
+
+@media screen and (max-width: 1200px) {
+    .box {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .box {
+        width: 48%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .box {
+        width: 100%;
+    }
+}
+
 .box-image {
     width: 100%; /* Šírka obrázku sa prispôsobí "boxu" */
     height: auto; /* Výška sa prispôsobí na zachovanie pomeru strán */
@@ -134,21 +154,21 @@
     flex-wrap: wrap;
     justify-content: flex-start; /* Box začne na začiatku kontajnera */
     gap: 10px; /* Vytvára medzery medzi boxmi */
-    margin-right: 4%; /* Odčítame okraj posledného boxu na riadku */
-    margin-left: 4%; /* Odčítame okraj prvého boxu na riadku */
+    margin-right: 0.5%; /* Odčítame okraj posledného boxu na riadku */
+    margin-left: 0.5%; /* Odčítame okraj prvého boxu na riadku */
     align-items: stretch;
 
 }
 
 .product-variant {
-    flex: 0 1 calc((100% / 6) - 10px); /* Nastavíme 5 boxov na riadok, flex-grow nastavený na 0 aby po vyflitrovaní sa boxy nesnažili vyplnnit všetko miesto a neroztahovali sa */
+    flex: 0 1 calc((100% / 5) - 10px); /* Nastavíme 5 boxov na riadok, flex-grow nastavený na 0 aby po vyflitrovaní sa boxy nesnažili vyplnnit všetko miesto a neroztahovali sa */
     margin-top: 20px;
     box-sizing: border-box; /* Zaistíme, aby padding a border boli zahrnuté do šírky boxu */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Jemný tieň okolo boxu */
     transition: transform 0.3s ease; /* Animácia pre efekt "vysunutia" */
     border-radius: 10px;
     align-items: stretch;
-    min-width: 180px;  /* minimálna šírka, pri zmenšovaní, iné menšie zobrazenia */
+    min-width: 350px;  /* minimálna šírka, pri zmenšovaní, iné menšie zobrazenia */
 
 }
 
@@ -158,20 +178,28 @@
 }
 
 .product-variant__image-wrapper {
-    height: 50%; /* Nastavíme výšku obrázku na 50% výšky celého boxu */
+    height: 200px;
     display: flex;
-    align-items: center; /* Vycentruje obrázok vertikálne */
-    justify-content: center; /* Vycentruje obrázok horizontálne */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .product-variant__image {
     max-width: 100%; /* Obrázok sa prispôsobí šírke obalu */
     max-height: 100%; /* Obrázok sa prispôsobí výške obalu */
+    /* ak nebude fungovat skusit: width: 100%;  height: 100%;  object-fit: contain; /* obrazok sa vopcha do boxu bez orezania */
+
 }
 
 .product-variant__info {
-    padding: 10px; /* Vnútorný okraj okolo informácií o produkte */
-    word-wrap: break-word; /* na zalomenie dlhých slov, aby ostali v "boxe" */
+    padding: 10px;
+    word-wrap: break-word;
+    overflow: hidden; /* pridané pre skrytie pretekajúceho obsahu */
+    min-height: 150px; /* alebo akákoľvek vhodná pevná výška */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* zabezpečí rovnomerné rozloženie obsahu */
 }
 
 
@@ -182,6 +210,38 @@
 .product-variant__color,
 .product-variant__quantity {
     margin: 5px 0; /* Vertikálny okraj pre textové prvky */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* pridá tri bodky ak je text príliš dlhý */
+}
+
+.btn-info {
+
+
+    margin: 10px 0; /* Margin na vrchu a spodku pre oddelenie */
+    width: 100%; /* Zabezpečí, že tlačidlo zaberá celú šírku */
+    box-sizing: border-box; /* Padding a border sú zahrnuté v šírke */
+    margin-top: auto; /* toto zabezpečí, že tlačidlo bude vždy na spodku kontajnera */
+    margin-bottom: 10px; /* upravte podľa potreby */
+
+}
+
+@media screen and (max-width: 768px) {
+    .btn-info {
+        padding: 4px 8px; /* Menší padding pre tablety */
+        font-size: 0.9rem; /* Menšia veľkosť fontu pre tablety */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .btn-info {
+        padding: 2px 6px; /* Ešte menší padding pre mobilné telefóny */
+        font-size: 0.8rem; /* Ešte menšia veľkosť fontu pre mobilné telefóny */
+    }
+
+    .product-variant {
+        min-height: 350px; /* Zvýšenie minimálnej výšky pre mobilné zobrazenia */
+    }
 }
 
 
@@ -194,13 +254,53 @@
     width: 100%; /* Čiara bude na celú šírku boxu */
 }
 
+
 /*
 .product-variant:nth-child(-n+6) {
     margin-top: 20px; } /* prvých 6 boxov (jeden riadok) odsadené od horného okraja */
 
+    div.pagination {
+
+        display: flex;
+    flex-wrap: wrap; /* Povolí zalomenie prvkov na nový riadok */
+    justify-content: center; /* Centruje prvky v kontajneri po osi x */
+    gap: 4px; /* Pridáva medzery medzi prvkami */
+    padding: 0; /* Odstráni padding */
+    list-style: none; /* Odstráni štýly zoznamu */
+
+    margin: auto; /* Toto tiež pomáha pri centrálnej alineácii */
+    }
+
+    .pagination a svg {
+        width: 20px ;
+        height: 20px;
+
+    }
+    div.pagination a {
+        text-decoration: none;
 
 
+    }
+    .pagination p {
+        margin-top: 20px;
+    }
+    .pagination svg {
+        width: 20px;
+    }
+    @media (max-width: 400px) {
+        .pagination {
+            flex: 0 0 auto;
+            flex-wrap: wrap;
+        }
 
+        .pagination a svg {
+            width: 16px;
+            height: 16px;
+        }
+        .pagination a {
+            font-size: 12px; /* Zmenšenie veľkosti textu */
+        }
+    }
 
 
 /*
@@ -220,10 +320,6 @@ css pre navbar
 
     width: 60%;
 }
-
-
-
-
 
 .footer {
     background: #000000;
@@ -301,6 +397,7 @@ css pre navbar
 }
 
 
+
 .filter-container {
     background: linear-gradient(90deg,
     rgb(88, 57, 11) 0%,
@@ -309,11 +406,20 @@ css pre navbar
     rgba(0, 0, 0) 90%,
     rgb(88, 57, 11) 100%);
     display: flex;
-    padding-top: 2.2%;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 100px;;
+    /* justify-content: center; */
     gap: 10px; /* medzery medzi komponentami */
     border-radius: 2px; /
 
+}
+@media screen and (max-width: 768px) {
+    .select-component {
+        flex-basis: 100%; /* Každý filter zaujme celú šírku svojho kontajnera */
+        justify-content: center; /* Centruje filter */
+        margin-bottom: 10px; /* Pridá medzeru medzi filtre */
+    }
 }
 
 .select-component {
@@ -332,3 +438,65 @@ css pre navbar
 }
 
 
+.variant-detail {
+    display: flex;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.variant-detail__image-section {
+    flex: 0 0 612px; /* flex-grow je 0, flex-shrink je 0 a flex-basis je 612px */
+    max-width: 612px; /* Maximálna šírka obrázku */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.variant-detail__image {
+    height: auto; /* Výška je automatická */
+    max-width: 100%;
+    max-height: 512px;
+    object-fit: contain; /*  zabezpečí ze obrázok sa zmestí do priestoru bez */
+}
+
+.variant-detail__info-section {
+    flex: 1; /* Zaberá zostávajúci priestor */
+    padding-left: 20px;
+
+}
+
+.variant-detail__title {
+    margin-bottom: 10px;
+    font-size: 50px; /* Prispôsobte veľkosť podľa potreby */
+}
+
+.variant-detail__description,
+.variant-detail__price,
+.variant-detail__size,
+.variant-detail__color,
+.variant-detail__quantity,
+.variant-detail__brand {
+    margin-bottom: 8px;
+    font-size: 30px;
+}
+
+.variant-detail .variant-detail__add-to-cart-btn {
+    display: inline-block;
+    background-color: #bd9d5a;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    line-height: 2rem;
+
+}
+
+.variant-detail .variant-detail__add-to-cart-btn:hover {
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Pridá shadow */
+        transform: scale(1.02); /* zväčší box o maličko */
+        transition: all 0.2s ease-out; /* animácia vysunizia */
+    }
