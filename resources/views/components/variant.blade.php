@@ -23,14 +23,15 @@
 
 
 
-<div class="category-title">
+{{-- <div class="category-title">
     <h1>Toto je kategória: {{ $category->name }}</h1>
-</div>
+</div> --}}
 @livewire('filter.filter', ['filters' => $filters])
 <div class="product-variants">
 
     @foreach ($variants as $variant)
         <div class="product-variant">
+            <a href="{{ route('variantDetail', ['id' => $variant->id]) }}" class="product-variant__link">
             @if ($variant->image)
                 <div class="product-variant__image-wrapper">
                     <img src="{{ asset('images/' . $variant->image) }}" alt="{{ $variant->image }}"
@@ -38,6 +39,7 @@
                 </div>
                 <hr class="product-variant__separator">
             @endif
+            </a>
             <div class="product-variant__info">
                 <h3 class="product-variant__title">{{ $variant->product->name }} {{ $variant->product->id }}</h3>
                 <p class="product-variant__description">{{ $variant->product->description }}</p>
@@ -46,7 +48,11 @@
                 <p class="product-variant__color">Color: {{ $variant->color }}</p>
                 <p class="product-variant__quantity">Quantity: {{ $variant->quantity }}</p>
                 <p class="product-variant__brand">Brand: {{ $variant->product->brand->name }}</p>
+                <a href="{{ route('variantDetail', ['id' => $variant->id]) }}" class="btn btn-info">Detail</a>
             </div>
         </div>
     @endforeach
+    <div class="pagination">
+        {{ $variants->links() }}
+    </div>
 </div>

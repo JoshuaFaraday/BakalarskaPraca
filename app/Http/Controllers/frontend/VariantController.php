@@ -38,9 +38,11 @@ class VariantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Variant $variant)
+    public function show($id)
     {
-        //
+        $variant = Variant::with('product.brand')->findOrFail($id); 
+
+        return view('variantDetail', compact('variant')); //
     }
 
     /**
@@ -121,7 +123,8 @@ class VariantController extends Controller
                 return $query->where('variants.color', $color);
             })
             ->when(!is_null($size), function ($query) use ($size) {
-                return $query->where('variants.size', $size);})
+                return $query->where('variants.size', $size);
+            })
 
 
             ->get(['variants.*']);

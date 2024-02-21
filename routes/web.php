@@ -33,6 +33,9 @@ Route::get('/', [FrontendCategoryController::class, 'index']); // Toto je domovs
 Route::get('/category/{name}', 'App\Http\Controllers\frontend\CategoryController@show')->name('category.show');
 Route::get('/category/{name}/filter', 'App\Http\Controllers\frontend\VariantController@filter')->name('variants.filter');
 
+Route::get('/variant/{id}', 'App\Http\Controllers\frontend\VariantController@show')->name('variantDetail');
+
+
 
 
 
