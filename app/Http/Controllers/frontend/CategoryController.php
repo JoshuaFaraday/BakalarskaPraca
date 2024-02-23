@@ -42,35 +42,25 @@ class CategoryController extends Controller
      * Display the specified resource.
      */
 
-    public function show($name)
+    public function show(Request $request, $name)
     {
+
+        $genders = Gender::all();
         // Hľadanie kategorie podľa nátvu, názov je vždy jedinečný->Lopty, Kopačky, Doplnky.....
         $category = Category::where('name', $name)->first();
 
-        // Ak kategória neexistuje presmerujem sa na hlavnu stranku
         if (!$category) {
             return redirect('/');
-            //->with('error', 'Kategória neexistuje.');
         }
-        // Načítavam všetky produkty ktore patria danej najdenej kategórie, s `with('variants')` načítam aj všetky varianty produktov
-        //Produkty s variantami sa získajú v jednom dotaze
         $variants = Variant::whereHas('product', function ($query) use ($category) {
             $query->where('category_id', $category->id);
-        })->paginate(20);
+        })->get();
 
-        //TODO:nieco podobne budem potrebovat pri ziskavani dat do filtrov
         // Získanie unikátnych veľkostí, farieb a pohlaví z variantov produktov v danej kategórii
-        // $sizes = Variant::whereHas('product', function ($query) use ($category) {
-        //     $query->where('category_id', $category->id);
-        // })->distinct()->pluck('size_id');
         $sizes = Category::with('sizes')->where('id', $category->id)->first()->sizes->mapWithKeys(function ($size) {
             return [$size->id => $size->value];
         })->toArray();
 
-
-        // $colors = Variant::whereHas('product', function ($query) use ($category) {
-        //     $query->where('category_id', $category->id);
-        // })->distinct()->pluck('color_id');
         $colors = Variant::whereHas('product', function ($query) use ($category) {
             $query->where('category_id', $category->id);
         })->with('color')->get()->pluck('color')->unique('id')->values()->mapWithKeys(function ($color) {
@@ -83,34 +73,43 @@ class CategoryController extends Controller
 
         $genders = Gender::whereHas('products', function ($query) use ($category) {
             $query->where('category_id', $category->id);
-        })->get();
-
-
-
-
-        $genders = $genders->map(function ($gender) {
-            return $gender->only(['id', 'name']); // predpoklad že chcem len ID a názov pre pohlavia
+        })->get()->mapWithKeys(function($gender) {
+            return [$gender->id => $gender->name];
         })->toArray();
-        $filters = ['sizes' => $sizes, 'colors' => $colors, 'brands' => $brands];
+
+        $filters = ['size' => $sizes, 'color' => $colors, 'brand' => $brands, 'gender' => $genders];
+
+        $variants = $variants->map(function ($model) {
+            return [
+                'id' => $model->id,
+                'name' => $model->product->name,
+                'size' => [
+                    'id' => $model->size->id,
+                    'value' =>  $model->size->value
+                ],
+                'color' => [
+                    'id' => $model->color->id,
+                    'name' => $model->color->name
+                ],
+                'brand' => [
+                    'id' => $model->product->brand->id,
+                    'name' => $model->product->brand->name
+                ],
+                'gender' => [
+                    'id' => $model->product->gender->id,
+                    'name' => $model->product->gender->name
+                ],
+                'image' => $model->image,
+                'description' => $model->product->description,
+                'quantity' => $model->quantity,
+                'price' => $model->product->price,
+
+            ];
+        })->toArray();
+
 
 
         return view('components.variant', compact('filters', 'category', 'variants'));
-
-
-
-        //Konverzia názvu kategorie na slug, kvoli diakritike a velky ma malym pismenam v db a nazvov blade-ov, teda dynamicky určit nazov šablony ktoru chcem zobrazit
-        // napr ak je nazov kategorie Lopty tak vdaka slug to bude lopty
-        // $slug = Str::slug(strtolower($name)); // konverzia nazvu na male pismena a potom na slug
-        // $viewName = 'pages.' . $slug; // vytovrim nazov sablony pre sablony v pages/
-
-        // // ak sablona existuje, zobrazim ju a pošlem do nej načitane produkty
-        // //dd($variants);
-        // if (view()->exists($viewName)) {
-        //     return view($viewName, compact('variants', 'sizes', 'colors', 'genders'));
-        // } else {
-        //     // redirect na hlavnu stranku ak view neexistuje
-        //     return redirect('/');
-        // }
     }
 
 

@@ -262,13 +262,13 @@
     div.pagination {
 
         display: flex;
-    flex-wrap: wrap; /* Povolí zalomenie prvkov na nový riadok */
-    justify-content: center; /* Centruje prvky v kontajneri po osi x */
-    gap: 4px; /* Pridáva medzery medzi prvkami */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
     padding: 0; /* Odstráni padding */
     list-style: none; /* Odstráni štýly zoznamu */
 
-    margin: auto; /* Toto tiež pomáha pri centrálnej alineácii */
+    margin: auto;
     }
 
     .pagination a svg {
@@ -298,7 +298,7 @@
             height: 16px;
         }
         .pagination a {
-            font-size: 12px; /* Zmenšenie veľkosti textu */
+            font-size: 12px;
         }
     }
 

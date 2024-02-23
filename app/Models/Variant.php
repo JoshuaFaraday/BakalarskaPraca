@@ -32,8 +32,8 @@ class Variant extends Model
 
     public function getImagePathAttribute()
     {
-        // Predpokladajme, že 'image' je stĺpec v tabuľke 'variants' kde je uložený názov obrázku
-        // Táto metóda vytvorí celú cestu k obrázku
+        //'image' je stĺpec v tabuľke 'variants' kde je uložený názov obrázku
+        //vytvorí celú cestu k obrázku
         return asset('images/' . $this->image);
     }
 

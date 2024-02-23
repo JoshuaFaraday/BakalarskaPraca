@@ -3,9 +3,10 @@
 return [
 
     'filter' => [
-        'colors' => 'Farba',
-        'sizes' => 'Veľkosť',
-        'brands' => 'Značka'
+        'color' => 'Farba',
+        'size' => 'Veľkosť',
+        'brand' => 'Značka',
+        'gender' => 'Pohlavie',
     ],
 
 

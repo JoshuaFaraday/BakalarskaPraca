@@ -40,7 +40,7 @@ class VariantController extends Controller
      */
     public function show($id)
     {
-        $variant = Variant::with('product.brand')->findOrFail($id); 
+        $variant = Variant::with('product.brand')->findOrFail($id);
 
         return view('variantDetail', compact('variant')); //
     }
@@ -69,77 +69,60 @@ class VariantController extends Controller
         //
     }
 
+    //Už sa nepožíva, prerobené do livewire
     public function filter(Request $request, $name)
     {
-        // Získanie filtrovacích možností pre formulár
+        // // Získanie filtrovacích možností pre formulár
 
-        $sizes = Variant::distinct()->pluck('size')->all();
-        $colors = Variant::distinct()->pluck('color')->all();
-        $genders = Gender::all();
-        $category = Category::where('name', $name)->first();
+        // $sizes = Variant::distinct()->pluck('size')->all();
+        // $colors = Variant::distinct()->pluck('color')->all();
+        // $genders = Gender::all();
+        // $category = Category::where('name', $name)->first();
 
-        //TODO spravit customRequest https://laravel.com/docs/10.x/validation#form-request-validation
-        // Získanie filtrovacích kritérií z požiadavky
-        $size = $request->size;
-        $color = $request->color;
-        $genderId = $request->gender;
-        $priceRange = $request->price;
-        $searchTerm = $request->search;
+        // //TODO spravit customRequest https://laravel.com/docs/10.x/validation#form-request-validation
+        // // Získanie filtrovacích kritérií z požiadavky
+        // $size = $request->size;
+        // $color = $request->color;
+        // $genderId = $request->gender;
+        // $priceRange = $request->price;
+        // $searchTerm = $request->search;
 
-        // Základný dotaz na Variant model
-        $query = Variant::query();
+        // // Základný dotaz na Variant model
+        // $query = Variant::query();
 
-        // Aplikovanie filtrovania na dotaz podľa veľkosti
-        if ($size) {
-            $query->where('size', $size);
-        }
+        // // Aplikovanie filtrovania na dotaz podľa veľkosti
+        // if ($size) {
+        //     $query->where('size', $size);
+        // }
 
-        // Aplikovanie filtrovania na dotaz podľa farby
-        if ($color) {
-            $query->where('color', $color);
-        }
+        // // Aplikovanie filtrovania na dotaz podľa farby
+        // if ($color) {
+        //     $query->where('color', $color);
+        // }
 
-        // Aplikovanie filtrovania na dotaz podľa pohlavia
-        if ($genderId) {
-            $query->whereHas('product', function ($query) use ($genderId) {
-                $query->where('gender_id', $genderId);
-            });
-        }
+        // // Aplikovanie filtrovania na dotaz podľa pohlavia
+        // if ($genderId) {
+        //     $query->whereHas('product', function ($query) use ($genderId) {
+        //         $query->where('gender_id', $genderId);
+        //     });
+        // }
 
-        if ($searchTerm) {
-            $query->whereHas('product', function ($query) use ($searchTerm) {
-                $query->where('name', 'LIKE', '%' . $searchTerm . '%');
-            });
-        }
-        $variants = $query->get();
+        // if ($searchTerm) {
+        //     $query->whereHas('product', function ($query) use ($searchTerm) {
+        //         $query->where('name', 'LIKE', '%' . $searchTerm . '%');
+        //     });
+        // }
+        // $variants = $query->get();
 
-        $categoryId = 1;
+        // $categoryId = 1;
 
-        $variants = Variant::join('products', 'variants.product_id', '=', 'products.id')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->where('categories.name', 'Lopty')
+        // return view('components\variant', [
+        //     'variants' => $variants, // Filtrované varianty produktov
+        //     'sizes' => $sizes,       // Možnosti pre veľkosti
+        //     'colors' => $colors,     // Možnosti pre farby
+        //     'genders' => $genders,   // Možnosti pre pohlavia
+        //     'category' => $category,
 
-            ->when(!is_null($color), function ($query) use ($color) {
-                return $query->where('variants.color', $color);
-            })
-            ->when(!is_null($size), function ($query) use ($size) {
-                return $query->where('variants.size', $size);
-            })
-
-
-            ->get(['variants.*']);
-
-
-        // $productIds = $variants->pluck('product_id')->unique();
-        // $products = Product::whereIn('id', $productIds)->with('variants')->get();
-
-        return view('components\variant', [
-            'variants' => $variants, // Filtrované varianty produktov
-            'sizes' => $sizes,       // Možnosti pre veľkosti
-            'colors' => $colors,     // Možnosti pre farby
-            'genders' => $genders,   // Možnosti pre pohlavia
-            'category' => $category,
-
-        ]);
+        // ]);
     }
 }
