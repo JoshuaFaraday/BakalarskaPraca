@@ -15,16 +15,16 @@
                 <a class="nav-link text-warning" href="/"><b>Domov</b></a>
             </li> --}}
             <li class="nav-item">
-                <a class="nav-link text-warning" href="#"><b>Všetko</b></a>
+                <a class="nav-link text-warning" href="{{ route('category.showSpecial', ['specialCategory' => 'all']) }}"><b>Všetko</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-warning" href="#"><b>Muži</b></a>
+                <a class="nav-link text-warning" href="{{ route('category.showSpecial', ['specialCategory' => 'muz']) }}"><b>Muži</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-warning" href="#"><b>Ženy</b></a>
+                <a class="nav-link text-warning" href="{{ route('category.showSpecial', ['specialCategory' => 'zena']) }}"><b>Ženy</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-warning" href="#"><b>Deti</b></a>
+                <a class="nav-link text-warning" href="{{ route('category.showSpecial', ['specialCategory' => 'Dieťa']) }}"><b>Deti</b></a>
             </li>
         </ul>
     </div>

@@ -73,7 +73,7 @@ class CategoryController extends Controller
 
         $genders = Gender::whereHas('products', function ($query) use ($category) {
             $query->where('category_id', $category->id);
-        })->get()->mapWithKeys(function($gender) {
+        })->get()->mapWithKeys(function ($gender) {
             return [$gender->id => $gender->name];
         })->toArray();
 
@@ -110,6 +110,88 @@ class CategoryController extends Controller
 
 
         return view('components.variant', compact('filters', 'category', 'variants'));
+    }
+
+    //pagination cez livewire, vždy ked sa prekliknem na inu stranku, spravi sa novy dotaz, odstranit duplicity
+    public function showSpecial(Request $request, $specialCategory)
+    {
+        $genderId = -1;
+        switch ($specialCategory) {
+            case 'muz';
+                $genderId = 1;
+                break;
+            case 'zena';
+                $genderId = 2;
+                break;
+            case 'dieta';
+                $genderId = 3;
+                break;
+            default;
+                break;
+        }
+
+
+        $variants = Variant::whereHas('product', function ($query) use ($genderId) {
+            $query->where('gender_id', $genderId);
+        });
+
+
+        // Získanie unikátnych veľkostí, farieb a pohlaví z variantov produktov v danej kategórii
+        $sizes = $variants->with('size')->get()->mapWithKeys(function ($size) {
+            return [$size->id => $size->value];
+        })->toArray();
+
+        $colors = $variants->whereHas('product', function ($query) use ($genderId) {
+            $query->where('gender_id', $genderId);
+        })->with('color')->get()->pluck('color')->unique('id')->values()->mapWithKeys(function ($color) {
+            return [$color->id => $color->name];
+        })->toArray();
+
+        $brands = $variants->whereHas('product', function ($query) use ($genderId) {
+            $query->where('gender_id', $genderId);
+        })->get()->pluck('name', 'id')->toArray();
+
+        $genders = $variants->whereHas('product', function ($query) use ($genderId) {
+            $query->where('gender_id', $genderId);
+        })->get()->mapWithKeys(function ($gender) {
+            return [$gender->id => $gender->name];
+        })->toArray();
+
+        $filters = ['size' => $sizes, 'color' => $colors, 'brand' => $brands, 'gender' => $genders];
+
+        if ($specialCategory == 'all') {
+            $variants = Variant::query();
+        }
+        $variants = $variants->limit(100)->get()->map(function ($model) {
+
+            return [
+                'id' => $model->id,
+                'name' => $model->product->name,
+                'size' => [
+                    'id' => $model->size->id,
+                    'value' =>  $model->size->value
+                ],
+                'color' => [
+                    'id' => $model->color->id,
+                    'name' => $model->color->name
+                ],
+                'brand' => [
+                    'id' => $model->product->brand->id,
+                    'name' => $model->product->brand->name
+                ],
+                'gender' => [
+                    'id' => $model->product->gender->id,
+                    'name' => $model->product->gender->name
+                ],
+                'image' => $model->image,
+                'description' => $model->product->description,
+                'quantity' => $model->quantity,
+                'price' => $model->product->price,
+
+            ];
+        })->toArray();
+
+        return view('components.variant', compact('filters', 'variants'));
     }
 
 
