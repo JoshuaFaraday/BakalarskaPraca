@@ -208,7 +208,8 @@
 .product-variant__price,
 .product-variant__size,
 .product-variant__color,
-.product-variant__quantity {
+.product-variant__quantity,
+.product-variant__brand {
     margin: 5px 0; /* Vertikálny okraj pre textové prvky */
     white-space: nowrap;
     overflow: hidden;
@@ -319,6 +320,15 @@ css pre navbar
 .navbar-logo img {
 
     width: 60%;
+}
+.navbar-custom .nav-link {
+    color: #bd9d5a !important;
+    font-weight: bold;
+}
+
+.navbar-custom .nav-link:hover {
+    color: #ba8b00 !important;
+    font-weight: bold;
 }
 
 .footer {

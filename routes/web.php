@@ -3,8 +3,10 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\frontend\CategoryController as FrontendCategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VariantController;
 use Illuminate\Routing\Route as RoutingRoute;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Facades\Voyager;
 
@@ -61,3 +63,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 // });
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');

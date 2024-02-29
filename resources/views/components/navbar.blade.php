@@ -15,17 +15,57 @@
                 <a class="nav-link text-warning" href="/"><b>Domov</b></a>
             </li> --}}
             <li class="nav-item">
-                <a class="nav-link text-warning" href="{{ route('category.showSpecial', ['specialCategory' => 'all']) }}"><b>Všetko</b></a>
+                <a class="nav-link" href="{{ route('category.showSpecial', ['specialCategory' => 'all']) }}"><b>Všetko</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-warning" href="{{ route('category.showSpecial', ['specialCategory' => 'muz']) }}"><b>Muži</b></a>
+                <a class="nav-link" href="{{ route('category.showSpecial', ['specialCategory' => 'muz']) }}"><b>Muži</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-warning" href="{{ route('category.showSpecial', ['specialCategory' => 'zena']) }}"><b>Ženy</b></a>
+                <a class="nav-link" href="{{ route('category.showSpecial', ['specialCategory' => 'zena']) }}"><b>Ženy</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-warning" href="{{ route('category.showSpecial', ['specialCategory' => 'Dieťa']) }}"><b>Deti</b></a>
+                <a class="nav-link" href="{{ route('category.showSpecial', ['specialCategory' => 'dieta']) }}"><b>Deti</b></a>
             </li>
         </ul>
+
+
     </div>
+   <!-- Navbar Right Side -->
+<div class="navbar-nav">
+    @if (Auth::guest())
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">Register</a>
+        </li>
+    @else
+        <!-- Odkaz pre admina -->
+        @if (Auth::user()->email === 'admin@admin.com')
+            <li class="nav-item">
+                <a class="nav-link" href="/admin">Admin Panel</a>
+            </li>
+        @endif
+
+        <!-- Dropdown for authenticated user -->
+        <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->name }}
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
+        </li>
+    @endif
+</div>
+</div>
 </nav>
