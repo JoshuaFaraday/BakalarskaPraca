@@ -13,12 +13,10 @@ class Filter extends Component
 
     public function handleFilterChanged($filter)
     {
-        // Tu spracuje vybranú hodnotu, napríklad uložením do vlastnosti
+        // spracuje vybranú hodnotu, napríklad uložením do vlastnosti
          $this->selectedOptions[$filter['name']] = $filter['value'];
          $this->dispatch('filterVariants', $this->selectedOptions);
-
     }
-
     public function resetFilter()
     {
         $this->dispatch('filterVariants', []);
