@@ -8,7 +8,7 @@
             selected
             @endif>Vyberte možnosť...</option>
                 @foreach($options as $key => $value)
-                    <option value="{{ $key }}">{{$key}} {{ $value }}</option>
+                    <option value="{{ $key }}"> {{ $value }}</option> {{-- {{$key}} pre zobrazenie id --}}
                 @endforeach
 
         </select>
