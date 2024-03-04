@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'AM footbal e-shop')
-
 <div id="welcomeCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#welcomeCarousel" data-slide-to="0" class="active"></li>
@@ -36,6 +34,7 @@
     </a>
     </div>
 
+    @section('content')
     <div class="box-container">
         @foreach ($categories as $category)
             <div class="box">
@@ -51,4 +50,4 @@
         @endforeach
     </div>
 
-
+ @endsection

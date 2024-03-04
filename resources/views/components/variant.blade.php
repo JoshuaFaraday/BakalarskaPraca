@@ -4,6 +4,7 @@
 @livewire('filter.filter', ['filters' => $filters])
 
 @livewire('product-list', ['variants' => $variants])
+@section('content')
 {{-- @if($subcategories->isNotEmpty())
     <div class="subcategories">
         <h3>Subcategories:</h3>
@@ -32,3 +33,4 @@
         @endforeach
     </div>
 @endif
+@endsection
