@@ -22,6 +22,8 @@ class BrandTableSeeder extends Seeder
             ['name' => 'New Balance'],
             ['name' => 'Umbro'],
             ['name' => 'Under Armour'],
+            ['name' => 'Select'],
+            ['name' => 'Opro'],
 
         ], ['name']);
     }
