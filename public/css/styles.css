@@ -10,7 +10,7 @@ body, html {
 }
 
 body .carousel-inner {
-    width: 100vw; /* 100% šírky viewportu */
+    width: 99.19vw; /* 100% šírky viewportu */
     height: 75vh; /* 75% výšky viewportu */
 }
   /* Nastavuje obrázky a videá na celú šírku a výšku Carousel */
@@ -148,7 +148,7 @@ body .carousel-inner {
     justify-content: space-between;
     width: calc(100% - 2%); /* Odráta marginy z celkovej šírky */
     box-sizing: border-box; /* Zahrnie padding a border do šírky */
-    margin: 0.8% 1%; 
+    margin: 0.8% 1%;
 
 }
 
