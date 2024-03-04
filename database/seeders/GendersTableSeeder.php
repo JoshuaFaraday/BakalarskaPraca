@@ -13,7 +13,7 @@ class GendersTableSeeder extends Seeder
      */
     public function run()
 {
-    $genders = ['muz', 'zena', 'unisex'];
+    $genders = ['Muž', 'Žena', 'Dieťa','unisex'];
 
     foreach ($genders as $gender) {
         Gender::create(['name' => $gender]);
