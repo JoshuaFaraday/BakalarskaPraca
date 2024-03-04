@@ -1,9 +1,6 @@
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">
-
-
-
             <div class="footer__links-col">
                 <ul class="footer__links list-unstyled">
                     <li class="footer__link-item"><a href="#kontakt" class="footer__link" >Kontakt</a></li>
