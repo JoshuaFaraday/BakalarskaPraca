@@ -18,7 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all(); // Získajte všetky kategórie z databázy
+        //načíta len hlavné kategórie bez podkategorii
+        $categories = Category::whereNull('parent_id')->get();
         return view('welcome', compact('categories')); //
     }
 
@@ -45,9 +46,12 @@ class CategoryController extends Controller
     public function show(Request $request, $name)
     {
 
-        $genders = Gender::all();
+        //$genders = Gender::all();
+
         // Hľadanie kategorie podľa nátvu, názov je vždy jedinečný->Lopty, Kopačky, Doplnky.....
         $category = Category::where('name', $name)->first();
+
+        $subcategories = Category::where('parent_id', $category->id)->get();
 
         if (!$category) {
             return redirect('/');
@@ -57,7 +61,14 @@ class CategoryController extends Controller
         })->get();
 
         // Získanie unikátnych veľkostí, farieb a pohlaví z variantov produktov v danej kategórii
-        $sizes = Category::with('sizes')->where('id', $category->id)->first()->sizes->mapWithKeys(function ($size) {
+        // $sizes = Category::with('sizes')->where('id', $category->id)->first()->sizes->mapWithKeys(function ($size) {
+        //     return [$size->id => $size->value];
+        // })->toArray();
+
+        $sizes = Variant::whereHas('product', function ($query) use ($category) {
+            $query->where('category_id', $category->id);
+        })->with('size')->get()->pluck('size')->unique('id')->values()->mapWithKeys(function ($size) {
+            // Uistite sa, že používate správne atribúty modelu Size
             return [$size->id => $size->value];
         })->toArray();
 
@@ -103,13 +114,14 @@ class CategoryController extends Controller
                 'description' => $model->product->description,
                 'quantity' => $model->quantity,
                 'price' => $model->product->price,
+                'info' => $model->info
 
             ];
         })->toArray();
 
 
 
-        return view('components.variant', compact('filters', 'category', 'variants'));
+        return view('components.variant', compact('filters', 'category', 'variants', 'subcategories'));
     }
 
     //pagination cez livewire, vždy ked sa prekliknem na inu stranku, spravi sa novy dotaz, odstranit duplicity
@@ -149,7 +161,9 @@ class CategoryController extends Controller
 
         $brands = $variants->whereHas('product', function ($query) use ($genderId) {
             $query->where('gender_id', $genderId);
-        })->get()->pluck('name', 'id')->toArray();
+        })->with('product.brand')->get()->pluck('product.brand')->unique('id')->values()->mapWithKeys(function ($brand) {
+            return [$brand->id => $brand->name];
+        })->toArray();
 
         $genders = $variants->whereHas('product', function ($query) use ($genderId) {
             $query->where('gender_id', $genderId);
@@ -159,10 +173,30 @@ class CategoryController extends Controller
 
         $filters = ['size' => $sizes, 'color' => $colors, 'brand' => $brands, 'gender' => $genders];
 
+
         if ($specialCategory == 'all') {
             $variants = Variant::query();
+
+            $sizes = $variants->with('size')->get()->pluck('size')->unique('id')->values()->mapWithKeys(function ($size) {
+                return [$size->id => $size->value];
+            })->toArray();
+
+            $colors = $variants->with('color')->get()->pluck('color')->unique('id')->values()->mapWithKeys(function ($color) {
+                return [$color->id => $color->name];
+            })->toArray();
+
+            $brands = $variants->with('product.brand')->get()->pluck('product.brand')->unique('id')->values()->mapWithKeys(function ($brand) {
+                return [$brand->id => $brand->name];
+            })->toArray();
+
+
+            $genders = $variants->get()->mapWithKeys(function ($gender) {
+                return [$gender->id => $gender->name];
+            })->toArray();
+            $filters = ['size' => $sizes, 'color' => $colors, 'brand' => $brands, 'gender' => $genders];
+
         }
-        $variants = $variants->limit(100)->get()->map(function ($model) {
+        $variants = $variants->limit(10000)->get()->map(function ($model) {
 
             return [
                 'id' => $model->id,
@@ -187,11 +221,18 @@ class CategoryController extends Controller
                 'description' => $model->product->description,
                 'quantity' => $model->quantity,
                 'price' => $model->product->price,
+                'info' => $model->info
 
             ];
         })->toArray();
 
-        return view('components.variant', compact('filters', 'variants'));
+
+        // return view('components.variant', compact('filters', 'variants'));
+        return view('components.variant', [
+            'filters' => $filters,
+            'variants' => $variants,
+            'subcategories' => collect()
+        ]);
     }
 
 
