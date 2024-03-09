@@ -19,11 +19,10 @@ class ProductList extends Component
 
     public function handleFiltering($value)
     {
-        // Tu spracuje vybranú hodnotu, napríklad uložením do vlastnosti
+        //spracuje vybranú hodnotu, uložením do vlastnosti
         $this->selectedOption = $value;
         $this->filter();
     }
-
     public function filter() {
         $this->filteredVariants = Arr::where($this->variants, function ($variant) {
             foreach ($this->selectedOption as $key => $value) {
@@ -33,7 +32,6 @@ class ProductList extends Component
                 if (!Arr::has($variant, $key) || Arr::get($variant, $key)['id'] != $value) {
                     return false;
                 }
-
             }
             return true;
         });
@@ -47,6 +45,7 @@ class ProductList extends Component
     }
     public function render()
     {
+
 
         return view('livewire.product-list');
     }
