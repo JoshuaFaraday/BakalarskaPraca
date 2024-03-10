@@ -19,7 +19,7 @@
                 <p class="product-variant__brand">Značka: {{ $variant['brand']['name'] }}</p>
                 {{-- <p class="product-variant__price">Info: {{ $variant['info'] }}</p> --}}
                 {{-- <p class="product-variant__color">Farba: {{ $variant['color']['name'] }}</p> {{$variant['color']['id']}} --}}
-                <p class="product-variant__size">Size: {{ $variant['size']['value'] }}</p>
+                <p class="product-variant__size">Veľkosť: {{ $variant['size']['value'] }}</p>
                 {{-- <p class="product-variant__quantity">Quantity: {{ $variant['quantity'] }}</p>
                 <p class="product-variant__quantity">Gender: {{ $variant['gender']['name'] }}</p> --}}
                 <p class="product-variant__price">Cena: {{ $variant['price'] }}€</p>
