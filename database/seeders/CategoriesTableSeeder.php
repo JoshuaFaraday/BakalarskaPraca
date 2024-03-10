@@ -12,7 +12,7 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
 
-        $category = Category::find(1); // Najdite kategóriu podľa ID
+        $category = Category::find(1); // Najde kategóriu podľa ID
         $letterSizes = Size::where('value', 'regexp', '^[A-Za-z]+$')->get()->pluck('id')->toArray();
         $numberSizes = Size::where('value', 'regexp', '^[0-9]+$')->get()->pluck('id')->toArray();
         $ballSizes = Size::whereIn('value', ['4', '5'])->get()->pluck('id')->toArray();
@@ -21,24 +21,24 @@ class CategoriesTableSeeder extends Seeder
 
         DB::table('categories')->delete();
 
-        $lopty = Category::updateOrCreate(['name' => 'Lopty', 'image' => '\images\lobda.jpg']);
+        $lopty = Category::updateOrCreate(['name' => 'Lopty', 'image' => 'images/lobda.jpg']);
         $lopty->sizes()->attach($ballSizes);
-        $kopacky = Category::updateOrCreate(['name' => 'Kopačky', 'image' => '\images\1050116-1109297282.jpg']);
+        $kopacky = Category::updateOrCreate(['name' => 'Kopačky', 'image' => 'images/1050116-1109297282.jpg']);
         //$kopacky->sizes()->attach($numberSizes);
-        $chranice = Category::updateOrCreate(['name' => 'Chrániče', 'image' => '\images\chraniče.jpg']);
+        $chranice = Category::updateOrCreate(['name' => 'Chrániče', 'image' => 'images/chraniče.jpg']);
         $chranice->sizes()->attach($letterSizes);
-        $brankarskeRukavice = Category::updateOrCreate(['name' => 'Brankárske rukavice', 'image' => '\images\Oddychajace-pogrubione-rekawice-bramkarskie.jpg']);
+        $brankarskeRukavice = Category::updateOrCreate(['name' => 'Brankárske rukavice', 'image' => 'images/Oddychajace-pogrubione-rekawice-bramkarskie.jpg']);
         $brankarskeRukavice->sizes()->attach($goalKeeperSizes);
-        $oblecenie = Category::updateOrCreate(['name' => 'Oblečenie', 'image' => '\images\336420032_max.jpg']);
+        $oblecenie = Category::updateOrCreate(['name' => 'Oblečenie', 'image' => 'images/336420032_max.jpg']);
         $oblecenie->sizes()->attach($letterSizes);
-        $doplnky = Category::updateOrCreate(['name' => 'Doplnky', 'image' => '\images\Training-kit-cely-novy-3-scaled.jpg']);
+        $doplnky = Category::updateOrCreate(['name' => 'Doplnky', 'image' => 'images/Training-kit-cely-novy-3-scaled.jpg']);
 
 
         Category::upsert([
-            ['name' => 'Lisovky', 'parent_id' => $kopacky->id ,'image' => '\images\NahladLisovky.jpg'],
-            ['name' => 'Lisokolíky', 'parent_id' => $kopacky->id,'image' => '\images\NahladKoliky.jpg'],
-            ['name' => 'Turfy', 'parent_id' => $kopacky->id,'image' => '\images\NahladTurf.jpg'],
-            ['name' => 'Hálovky', 'parent_id' => $kopacky->id,'image' => '\images\NahladHalovky.jpg'],
+            ['name' => 'Lisovky', 'parent_id' => $kopacky->id ,'image' => 'images/NahladLisovky.jpg'],
+            ['name' => 'Lisokolíky', 'parent_id' => $kopacky->id,'image' => 'images/NahladKoliky.jpg'],
+            ['name' => 'Turfy', 'parent_id' => $kopacky->id,'image' => 'images/NahladTurf.jpg'],
+            ['name' => 'Hálovky', 'parent_id' => $kopacky->id,'image' => 'images/NahladHalovky.jpg'],
         ], ['name'], ['parent_id', 'image']);
         $Kopacky =  Category::updateOrCreate(['name' => 'Lisovky']);
         $Kopacky->sizes()->attach($numberSizes);
@@ -50,9 +50,9 @@ class CategoriesTableSeeder extends Seeder
         $Kopacky->sizes()->attach($numberSizes);
 
         Category::upsert([
-            ['name' => 'Tréningové doplnky', 'parent_id' => $doplnky->id , 'image' => '\images\Training-kit-cely-novy-3-scaled.jpg'],
-            ['name' => 'Rozhodca', 'parent_id' => $doplnky->id , 'image' => '\images\rozhodcovske-oblecenie-doplnky-potreby-vybavenie-vystroj.jpg'],
-            ['name' => 'Zdravotné doplnky', 'parent_id' => $doplnky->id , 'image' => '\images\caroDoplnky.jpg'],
+            ['name' => 'Tréningové doplnky', 'parent_id' => $doplnky->id , 'image' => 'images/Training-kit-cely-novy-3-scaled.jpg'],
+            ['name' => 'Rozhodca', 'parent_id' => $doplnky->id , 'image' => 'images/rozhodcovske-oblecenie-doplnky-potreby-vybavenie-vystroj.jpg'],
+            ['name' => 'Zdravotné doplnky', 'parent_id' => $doplnky->id , 'image' => 'images/caroDoplnky.jpg'],
         ], ['name'], ['parent_id', 'image']);
         // $Doplnky =  Category::updateOrCreate(['name' => 'Tréningové doplnky']);
         // $Doplnky->sizes()->attach($letterSizes);
@@ -63,13 +63,13 @@ class CategoriesTableSeeder extends Seeder
 
 
         Category::upsert([
-            ['name' => 'Oficiálne dresy', 'parent_id' => $oblecenie->id, 'image' => '\images\RMCF.jpg'],
-            ['name' => 'Tričká', 'parent_id' => $oblecenie->id , 'image' => '\images\tshirtsNahlad.jpg'],
-            ['name' => 'Trenky', 'parent_id' => $oblecenie->id , 'image' => '\images\trenkyNahlad.jpg'],
+            ['name' => 'Oficiálne dresy', 'parent_id' => $oblecenie->id, 'image' => 'images/RMCF.jpg'],
+            ['name' => 'Tričká', 'parent_id' => $oblecenie->id , 'image' => 'images/tshirtsNahlad.jpg'],
+            ['name' => 'Trenky', 'parent_id' => $oblecenie->id , 'image' => 'images/trenkyNahlad.jpg'],
             // ['name' => 'Ponozky', 'parent_id' => $oblecenie->id , 'image' => '\images\Training-kit-cely-novy-3-scaled.jpg'],
             // ['name' => 'Bundy', 'parent_id' => $oblecenie->id , 'image' => '\images\Training-kit-cely-novy-3-scaled.jpg'],
             // ['name' => 'Mikiny', 'parent_id' => $oblecenie->id , 'image' => '\images\Training-kit-cely-novy-3-scaled.jpg'],
-            ['name' => 'Tepláky', 'parent_id' => $oblecenie->id , 'image' => '\images\teplakyNahlad.jpg'],
+            ['name' => 'Tepláky', 'parent_id' => $oblecenie->id , 'image' => 'images/teplakyNahlad.jpg'],
             // ['name' => 'Termo', 'parent_id' => $oblecenie->id , 'image' => '\images\Training-kit-cely-novy-3-scaled.jpg'],
         ], ['name'], ['parent_id', 'image']);
         // $oficialneDresy =  Category::updateOrCreate(['name' => 'Oficiálne dresy', 'image' => '\images\RMCF.jpg']);

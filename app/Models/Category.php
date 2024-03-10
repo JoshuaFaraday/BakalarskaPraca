@@ -32,4 +32,16 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent_id');
     }
 
+    protected $appends = ['image_path']; // Pridajte toto, ak to už nie je pridané
+
+    public function getImagePathAttribute()
+    {
+        if ($this->image) {
+            // Vráti celú cestu k obrázku, predpokladá, že 'image' atribút obsahuje názov súboru obrázka
+            return asset('storage/images/' . $this->image); // Použite 'storage/' ak obrázky sú v storage/app/public
+        }
+
+        return null; // alebo vráťte predvolenú cestu k obrázku, ak nie je obrázok nastavený
+    }
+
 }
