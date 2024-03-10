@@ -40,7 +40,7 @@
             <div class="box">
                 <a href="{{ route('category.show', ['name' => $category->name]) }}" class="box-link">
                     @if ($category->image)
-                        <img src="{{ $category->image }}" alt="{{ $category->name }}" class="box-image">
+                    <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}" class="box-image">
                     @endif
                     <div class="box-text">
                         <b>{{ $category->name }} </b>

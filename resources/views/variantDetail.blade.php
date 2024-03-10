@@ -3,7 +3,8 @@
 @section('content')
 <div class="variant-detail">
     <div class="variant-detail__image-section">
-        <img src="{{ asset('images/' . $variant->image) }}" alt="{{ $variant->name }}" class="variant-detail__image">
+        {{-- <img src="{{ asset('images/' . $variant->image) }}" alt="{{ $variant->name }}" class="variant-detail__image"> --}}
+        <img src="{{ asset('storage/' . str_replace('\\', '/', $variant->image)) }}" alt="{{ $variant->name }}" class="variant-detail__image">
     </div>
     <div class="variant-detail__info-section">
         <h2 class="variant-detail__title">{{ $variant->product->name }}</h2>

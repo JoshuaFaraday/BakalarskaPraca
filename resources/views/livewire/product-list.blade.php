@@ -4,14 +4,14 @@
         <div class="product-variant">
             <a href="{{ route('variantDetail', $variant['id']) }}" class="product-variant__link">
                 @if ($variant['image'])
-                    <div class="product-variant__image-wrapper">
-                        <img src="{{ asset('images/' . $variant['image']) }}" alt="{{ $variant['image'] }}"
-                            class="product-variant__image">
-                    </div>
+                <div class="product-variant__image-wrapper">
+                    {{-- <img src="{{ asset($variant['image']) }}" alt="{{ $variant['image'] }}" class="product-variant__image"> --}}
+                    <img src="{{ asset('storage/' . str_replace('\\', '/', $variant['image'])) }}" alt="{{ $variant['image'] }}" class="product-variant__image">
+                </div>
                     <hr class="product-variant__separator">
                 @endif
             </a>
-          
+
             <div class="product-variant__info">
                 <h3 class="product-variant__title">{{ $variant['name'] }} {{--{{ $variant['id'] }}  --}}</h3>
                 {{-- variant 'id' asi potom odstrániť keď budú normálne itemy --}}

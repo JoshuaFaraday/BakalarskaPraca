@@ -23,7 +23,7 @@
             <div class="box subcategory-box">
                 <a href="{{ route('category.show', ['name' => $subcategory->name]) }}" class="box-link subcategory-box__link">
                     @if ($subcategory->image)
-                    <img src="{{ $subcategory->image }}" alt="{{ $subcategory->name }}" class="box-image">
+                    <img src="{{ asset('storage/' . str_replace('\\', '/', $subcategory->image)) }}" alt="{{ $subcategory->name }}" class="box-image">
                     @endif
                     <div class="box-text subcategory-box__text">
                         <b>{{ $subcategory->name }}</b>
