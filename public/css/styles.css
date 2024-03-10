@@ -8,6 +8,9 @@ body, html {
     margin-right: auto;
     margin-left: auto;
 }
+.auth-container {
+    padding-top: 140px;
+}
 
 body .carousel-inner {
     width: 99.19vw; /* 100% šírky viewportu */
