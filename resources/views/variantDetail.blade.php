@@ -15,15 +15,30 @@
         <p class="variant-detail__size">Veľkosť: {{ $variant->size->value }}</p>
         <p class="variant-detail__gender">Pohlavie: {{ $variant->product->gender->name }}</p>
         {{-- <p class="variant-detail__quantity">Quantity: {{ $variant->quantity }}</p> --}}
-        <p class="variant-detail__quantity">Počet:
+        {{-- <p class="variant-detail__quantity">Počet:
             <select name="quantity" class="variant-detail__quantity-select">
                 @for ($i = 1; $i <= $variant->quantity; $i++)
                     <option value="{{ $i }}">{{ $i }}</option>
                 @endfor
             </select>
-        </p>
+        </p> --}}
         <p class="variant-detail__price">Cena: {{ $variant->product->price }}€</p>
-        <a href="#" class="variant-detail__add-to-cart-btn">PRIDAŤ DO KOŠÍKA</a>
+        <div class="variant-detail__quantity">Počet:
+            <form action="{{ route('cart.add') }}" method="POST">
+                @csrf
+                <input type="hidden" name="variant_id" value="{{ $variant->id }}">
+                <select name="quantity" class="variant-detail__quantity-select">
+                    @for ($i = 1; $i <= $variant->quantity; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
+                <button type="submit" class="variant-detail__add-to-cart-btn">PRIDAŤ DO KOŠÍKA</button>
+            </form>
+        </div>
+
+
+        
+        {{-- <a href="#" class="variant-detail__add-to-cart-btn">PRIDAŤ DO KOŠÍKA</a> --}}
     </div>
 </div>
 @endsection
