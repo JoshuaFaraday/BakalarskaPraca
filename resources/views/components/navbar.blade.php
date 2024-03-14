@@ -30,6 +30,9 @@
 
     <!-- Navbar pravá strana -->
     <ul class="navbar-nav">
+        <a href="{{ route('cart.show') }}" class="navbar-cart-link">
+            <i class="bi bi-cart4"></i>
+        </a>
         @if (Auth::guest())
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('login') }}">Login</a>
