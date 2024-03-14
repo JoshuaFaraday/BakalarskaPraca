@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\backend;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VariantController;
@@ -39,9 +40,13 @@ Route::get('/category/special/{specialCategory}', 'App\Http\Controllers\frontend
 
 Route::get('/variant/{id}', 'App\Http\Controllers\frontend\VariantController@show')->name('variantDetail');
 
+//routa pre košík
+Route::get('/cart', 'App\Http\Controllers\CartController@show')->name('cart.show');
 
+Route::get('/cart', 'App\Http\Controllers\CartController@show', 'show')->name('cart.show');
 
-
+//routa na pridanie do košika
+Route::post('/cart/add', 'App\Http\Controllers\CartController@addToCart')->name('cart.add');
 
 // Route::get('/lopty', function () {
 //     return view('pages.lopty'); //  blade sablona v priecinku resources-views-pages
