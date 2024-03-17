@@ -22,12 +22,6 @@ class Variant extends Model
         return $this->belongsTo(Color::class);
     }
 
-
-
-    public function cart() {
-        return $this->hasMany(Cart::class);
-    }
-
     protected $appends = ['image_path'];
 
     public function getImagePathAttribute()
@@ -36,7 +30,5 @@ class Variant extends Model
         //vytvorí celú cestu k obrázku
         return asset('images/' . $this->image);
     }
-
-
 
 }
