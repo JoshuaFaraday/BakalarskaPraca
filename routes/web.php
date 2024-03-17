@@ -5,11 +5,13 @@ use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VariantController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use TCG\Voyager\Facades\Voyager;
+use TCG\Voyager\Http\Controllers\VoyagerUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,45 +24,31 @@ use TCG\Voyager\Facades\Voyager;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-/*
-routy pre podstránky sekcii (lopty, chranice, rozhodca, ofiko dresy, kopacky.......)
-*/
 
 Route::get('/', [FrontendCategoryController::class, 'index']); // Toto je domovska stránka
 
 Route::get('/category/{name}', 'App\Http\Controllers\frontend\CategoryController@show')->name('category.show');
 
 Route::get('/category/special/{specialCategory}', 'App\Http\Controllers\frontend\CategoryController@showSpecial')->name('category.showSpecial');
-// Route::get('/category/{name}/filter', 'App\Http\Controllers\frontend\VariantController@filter')->name('variants.filter');
 
 Route::get('/variant/{id}', 'App\Http\Controllers\frontend\VariantController@show')->name('variantDetail');
 
 //routa pre košík
 Route::get('/cart', 'App\Http\Controllers\CartController@show')->name('cart.show');
 
-Route::get('/cart', 'App\Http\Controllers\CartController@show', 'show')->name('cart.show');
 
 //routa na pridanie do košika
 Route::post('/cart/add', 'App\Http\Controllers\CartController@addToCart')->name('cart.add');
 
-// Route::get('/lopty', function () {
-//     return view('pages.lopty'); //  blade sablona v priecinku resources-views-pages
-// });
+Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index')->name('checkout.index');
 
-/*
-koniec rout pre  podstránky sekcii (lopty, chranice, rozhodca, ofiko dresy, kopacky.......)
-*/
+Route::post('/checkout/process', 'App\Http\Controllers\CheckoutController@process')->name('checkout.process');
+
 
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
-
 
 
 // Route::group(['prefix' => 'admin'], function () {
