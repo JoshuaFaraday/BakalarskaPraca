@@ -38,10 +38,10 @@ class Category extends Model
     {
         if ($this->image) {
             // Vráti celú cestu k obrázku, predpokladá, že 'image' atribút obsahuje názov súboru obrázka
-            return asset('storage/images/' . $this->image); // Použite 'storage/' ak obrázky sú v storage/app/public
+            return asset('storage/images/' . $this->image); //obrázky sú v storage/app/public
         }
 
-        return null; // alebo vráťte predvolenú cestu k obrázku, ak nie je obrázok nastavený
+        return null; // alebo predvolenú cestu k obrázku, ak nie je obrázok
     }
 
 }

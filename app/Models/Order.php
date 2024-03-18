@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    // public function cart() {
-    //     return $this->hasMany(Cart::class);
-    // }
 
     public function orderStates() {
         return $this->belongsToMany(OrderState::class);
@@ -23,7 +20,6 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'price',
-        // ... všetky ďalšie atribúty, ktoré chcete priraďovať hromadne
     ];
 
     public function variants()

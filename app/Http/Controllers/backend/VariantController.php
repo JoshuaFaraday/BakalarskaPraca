@@ -21,6 +21,7 @@ class VariantController  extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
             // Získanie dát odovzdaných do pohľadu
             $data = $view->getData();
 
+
             // Môžete pridať alebo upraviť dáta pre váš pohľad
             // $data['customVariable'] = 'customValue';
 

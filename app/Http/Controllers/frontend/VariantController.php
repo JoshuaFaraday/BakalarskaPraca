@@ -68,5 +68,5 @@ class VariantController extends Controller
         //
     }
 
-   
+
 }
