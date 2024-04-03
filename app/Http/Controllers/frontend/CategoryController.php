@@ -60,15 +60,10 @@ class CategoryController extends Controller
             $query->where('category_id', $category->id);
         })->get();
 
-        // Získanie unikátnych veľkostí, farieb a pohlaví z variantov produktov v danej kategórii
-        // $sizes = Category::with('sizes')->where('id', $category->id)->first()->sizes->mapWithKeys(function ($size) {
-        //     return [$size->id => $size->value];
-        // })->toArray();
 
         $sizes = Variant::whereHas('product', function ($query) use ($category) {
             $query->where('category_id', $category->id);
         })->with('size')->get()->pluck('size')->unique('id')->values()->mapWithKeys(function ($size) {
-            // Uistite sa, že používate správne atribúty modelu Size
             return [$size->id => $size->value];
         })->toArray();
 
@@ -124,7 +119,7 @@ class CategoryController extends Controller
         return view('components.variant', compact('filters', 'category', 'variants', 'subcategories'));
     }
 
-    //pagination cez livewire, vždy ked sa prekliknem na inu stranku, spravi sa novy dotaz, odstranit duplicity
+    
     public function showSpecial(Request $request, $specialCategory)
     {
         $genderId = -1;
