@@ -24,7 +24,7 @@ class CartController extends Controller
             ->first();
 
         if ($order) {
-            // Načítanie položiek košíka a ich detailov z tabuľky
+            // Načítanie položiek košíka a ich detailov
             $cartItems = $order->variants->map(function ($variant) {
                 return [
                     'id' => $variant->id,
