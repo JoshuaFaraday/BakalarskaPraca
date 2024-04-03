@@ -5,18 +5,6 @@
 
 @livewire('product-list', ['variants' => $variants])
 @section('content')
-{{-- @if($subcategories->isNotEmpty())
-    <div class="subcategories">
-        <h3>Subcategories:</h3>
-        <ul>
-            @foreach($subcategories as $subcategory)
-                <li>
-                    <a href="{{ route('category.show', $subcategory->name) }}">{{ $subcategory->name }}</a>
-                </li>
-            @endforeach
-        </ul>
-    </div>
-@endif --}}
 @if($subcategories->isNotEmpty())
     <div class="box-container subcategories-container">
         @foreach($subcategories as $subcategory)
