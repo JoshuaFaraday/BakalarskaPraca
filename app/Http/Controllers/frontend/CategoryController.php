@@ -119,7 +119,7 @@ class CategoryController extends Controller
         return view('components.variant', compact('filters', 'category', 'variants', 'subcategories'));
     }
 
-    
+
     public function showSpecial(Request $request, $specialCategory)
     {
         $genderId = -1;
