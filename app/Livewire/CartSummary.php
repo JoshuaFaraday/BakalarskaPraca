@@ -20,7 +20,7 @@ class CartSummary extends Component
 
     public function recalculateTotal()
     {
-        // Prihlásenému užívateľovi pridám objednávku
+        // Prihlásenému užívateľovi pridanie objednávky
         $order = Order::where('user_id', Auth::id())->latest()->first();
 
         if($order) {

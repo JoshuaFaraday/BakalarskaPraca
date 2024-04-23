@@ -37,7 +37,7 @@ class Category extends Model
     public function getImagePathAttribute()
     {
         if ($this->image) {
-            // Vráti celú cestu k obrázku, predpokladá, že 'image' atribút obsahuje názov súboru obrázka
+            // Vráti celú cestu k obrázku
             return asset('storage/images/' . $this->image); //obrázky sú v storage/app/public
         }
 

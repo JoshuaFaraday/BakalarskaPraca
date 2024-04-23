@@ -46,8 +46,6 @@ class CategoryController extends Controller
     public function show(Request $request, $name)
     {
 
-        //$genders = Gender::all();
-
         // Hľadanie kategorie podľa nátvu, názov je vždy jedinečný->Lopty, Kopačky, Doplnky.....
         $category = Category::where('name', $name)->first();
 

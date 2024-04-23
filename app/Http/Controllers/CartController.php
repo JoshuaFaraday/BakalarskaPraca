@@ -12,7 +12,7 @@ class CartController extends Controller
 {
     public function __construct()
     {
-        //zaistí že pri pridávaní do košíka sa používateľ musí prihlásiť
+        //pri pridávaní do košíka sa používateľ musí prihlásiť
         $this->middleware('auth');
     }
     public function show()
