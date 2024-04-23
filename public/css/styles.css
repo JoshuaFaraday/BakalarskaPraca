@@ -32,7 +32,7 @@ body .carousel-inner {
 
 
 
-/*ovládacie prvky carouselu sú viditeľné a prístupné */
+/*ovládacie prvky carouselu */
 .carousel-control-prev,
 .carousel-control-next {
     width: 5%; /* Nastavuje šírku ovládacích prvkov na 5% šírky */
@@ -73,7 +73,7 @@ body .carousel-inner {
         transform: scale(1); /* Začiatočná škála je 1, teda žiadne zväčšenie */
     }
     to {
-        transform: scale(1.05); /* Mierne zväčšenie, 1.05 znamená 105% pôvodnej veľkosti */
+        transform: scale(1.05); /* Mierne zväčšenie, 1.05 tj 105% pôvodnej veľkosti */
     }
 }
 
@@ -93,7 +93,7 @@ body .carousel-inner {
     margin: 5px;
     overflow: hidden; /* obrazok ostane v boxe */
     position: relative; /* na poziciu textu v boxe */
-    border-radius: 10px; /* mierne zaoblenie hran */
+    border-radius: 10px; /* zaoblenie hran */
 }
 
 
@@ -198,8 +198,6 @@ body .carousel-inner {
 .product-variant__image {
     max-width: 100%; /* Obrázok sa prispôsobí šírke obalu */
     max-height: 100%; /* Obrázok sa prispôsobí výške obalu */
-    /* ak nebude fungovat skusit: width: 100%;  height: 100%;  object-fit: contain; /* obrazok sa vopcha do boxu bez orezania */
-
 }
 
 .product-variant__info {
@@ -232,7 +230,7 @@ body .carousel-inner {
     margin: 10px 0; /* Margin na vrchu a spodku pre oddelenie */
     width: 100%; /* tlačidlo zaberá celú šírku */
     box-sizing: border-box; /* Padding a border sú zahrnuté v šírke */
-    margin-top: auto; /* toto zabezpečí, že tlačidlo bude vždy na spodku kontajnera */
+    margin-top: auto; /* tlačidlo bude vždy na spodku kontajnera */
     margin-bottom: 10px;
 
 }
@@ -253,6 +251,11 @@ body .carousel-inner {
     .product-variant {
         min-height: 350px; /* Zvýšenie minimálnej výšky pre menšie */
     }
+    .product-variants {
+        display: flex;
+        justify-content: center; /* Zarovná .product-variant komponenty na stred */
+        flex-wrap: wrap;
+    }
 }
 
 
@@ -264,11 +267,6 @@ body .carousel-inner {
     margin: 0; /* Odstránenie vonkajších okrajov */
     width: 100%; /* Čiara bude na celú šírku boxu */
 }
-
-
-/*
-.product-variant:nth-child(-n+6) {
-    margin-top: 20px; } /* prvých 6 boxov (jeden riadok) odsadené od horného okraja */
 
     div.pagination {
 
@@ -431,8 +429,6 @@ css pre navbar
 }
 
 
-
-
 .filter-container {
     background: linear-gradient(90deg,
     rgb(88, 57, 11) 0%,
@@ -495,7 +491,7 @@ css pre navbar
     height: auto; /* Výška je automatická */
     max-width: 100%;
     max-height: 512px;
-    object-fit: contain; /*  zabezpečí ze obrázok sa zmestí do priestoru bez */
+    object-fit: contain; /*obrázok sa zmestí do priestoru bez */
 }
 
 .variant-detail__info-section {
@@ -532,7 +528,7 @@ css pre navbar
 }
 
 .variant-detail__quantity-select {
-    margin-right: 10px; /* Pridá odstup medzi dropdown a tlačidlo */
+    margin-right: 10px; /*odstup medzi dropdown a tlačidlom */
     margin-left: 8px;
 }
 
