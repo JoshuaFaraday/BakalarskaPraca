@@ -13,7 +13,6 @@
 
             <div class="product-variant__info">
                 <h3 class="product-variant__title">{{ $variant['name'] }} {{--{{ $variant['id'] }}  --}}</h3>
-                {{-- variant 'id' asi potom odstrániť keď budú normálne itemy --}}
                 {{-- <p class="product-variant__description">{{ $variant['description'] }}</p> --}}
                 <p class="product-variant__brand">Značka: {{ $variant['brand']['name'] }}</p>
                 {{-- <p class="product-variant__price">Info: {{ $variant['info'] }}</p> --}}
