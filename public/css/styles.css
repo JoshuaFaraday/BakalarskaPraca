@@ -135,7 +135,7 @@ body .carousel-inner {
 
 
 .box:hover {
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Pridá shadow */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Pridá tien okolo boxu */
     transform: scale(1.05); /* zväčší box o maličko */
     transition: all 0.3s ease-out; /* animácia vysunizia */
 }

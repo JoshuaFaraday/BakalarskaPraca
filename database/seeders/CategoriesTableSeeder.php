@@ -54,25 +54,13 @@ class CategoriesTableSeeder extends Seeder
             ['name' => 'Rozhodca', 'parent_id' => $doplnky->id , 'image' => 'images/rozhodcovske-oblecenie-doplnky-potreby-vybavenie-vystroj.jpg'],
             ['name' => 'Zdravotné doplnky', 'parent_id' => $doplnky->id , 'image' => 'images/caroDoplnky.jpg'],
         ], ['name'], ['parent_id', 'image']);
-        // $Doplnky =  Category::updateOrCreate(['name' => 'Tréningové doplnky']);
-        // $Doplnky->sizes()->attach($letterSizes);
-        // $Doplnky =  Category::updateOrCreate(['name' => 'Rozhodca']);
-        // $Doplnky->sizes()->attach($letterSizes);
-        // $Doplnky =  Category::updateOrCreate(['name' => 'Zdravotné doplnky']);
-        // $Doplnky->sizes()->attach($letterSizes);
 
 
         Category::upsert([
             ['name' => 'Oficiálne dresy', 'parent_id' => $oblecenie->id, 'image' => 'images/RMCF.jpg'],
             ['name' => 'Tričká', 'parent_id' => $oblecenie->id , 'image' => 'images/tshirtsNahlad.jpg'],
             ['name' => 'Trenky', 'parent_id' => $oblecenie->id , 'image' => 'images/trenkyNahlad.jpg'],
-            // ['name' => 'Ponozky', 'parent_id' => $oblecenie->id , 'image' => '\images\Training-kit-cely-novy-3-scaled.jpg'],
-            // ['name' => 'Bundy', 'parent_id' => $oblecenie->id , 'image' => '\images\Training-kit-cely-novy-3-scaled.jpg'],
-            // ['name' => 'Mikiny', 'parent_id' => $oblecenie->id , 'image' => '\images\Training-kit-cely-novy-3-scaled.jpg'],
             ['name' => 'Tepláky', 'parent_id' => $oblecenie->id , 'image' => 'images/teplakyNahlad.jpg'],
-            // ['name' => 'Termo', 'parent_id' => $oblecenie->id , 'image' => '\images\Training-kit-cely-novy-3-scaled.jpg'],
         ], ['name'], ['parent_id', 'image']);
-        // $oficialneDresy =  Category::updateOrCreate(['name' => 'Oficiálne dresy', 'image' => '\images\RMCF.jpg']);
-        // $oficialneDresy->sizes()->attach($letterSizes);
     }
 }

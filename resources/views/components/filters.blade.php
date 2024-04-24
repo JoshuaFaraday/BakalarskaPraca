@@ -1,4 +1,4 @@
-<div class="filters">
+{{-- <div class="filters">
     <form action="{{ route('variants.filter', ['name' => request('name')]) }}" method="GET" class="filters-form">
         <div class="filters-form__group">
             <label for="size">Veľkosť:</label>
@@ -45,4 +45,4 @@
 
         <button type="submit" class="filters-form__submit">Filtrovať</button>
     </form>
-</div>
+</div> --}}

@@ -13,23 +13,12 @@ class VariantController  extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
     public function index(Request $request)
     {
 
-        // Volanie pôvodnej index metódy a získanie výstupu
         $view = parent::index($request);
-
-        // Kontrola, či výstup je inštancia View
         if ($view instanceof \Illuminate\View\View) {
-            // Získanie dát odovzdaných do pohľadu
             $data = $view->getData();
-
-
-            // Môžete pridať alebo upraviť dáta pre váš pohľad
-            // $data['customVariable'] = 'customValue';
-
-            // Vrátenie vášho vlastného pohľadu s pôvodnými dátami
             return view('voyager::variants.browse', $data);
         }
 
-        // Ak výstup nie je View (napr. presmerovanie), vráťte ho priamo
         return $view;
     }
 

@@ -32,7 +32,7 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent_id');
     }
 
-    protected $appends = ['image_path']; // Pridajte toto, ak to už nie je pridané
+    protected $appends = ['image_path']; 
 
     public function getImagePathAttribute()
     {
